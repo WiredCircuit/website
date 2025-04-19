@@ -1,13 +1,74 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wired Circuit</title>
-</head> 
+    <title>Wired Circuit Adventure Zone!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
 <body>
-    <!-- website under progress  -->
-    <p>Welcome to the Wired Circuit website! This is a placeholder page while we work on the actual content.</p>
-    <p>Stay tuned for updates and exciting features coming soon!</p>
-    <p>In the meantime, feel free to explore our other pages or contact us for more information.</p>
-<!-- </body> -->
+
+    <header class="header">
+        <!-- Title with new effect will be handled in CSS -->
+        <h1><span class="zap zap-left">⚡</span> Wired Circuit <span class="zap zap-right">⚡</span><br>Adventure Zone!</h1>
+        <p class="subtitle">Build, Code, and Play!</p>
+    </header>
+
+    <main class="main-content">
+
+        <!-- Kits Section - (Now earlier in the flow) -->
+        <section class="kits-section animate-on-scroll">
+            <h2>Get Your Spark Starter Kit!</h2>
+            <div class="kits-container">
+                <div class="kit-card">
+                    <div class="kit-tag">For Kids</div>
+                    <div class="kit-content">
+                        <h3>Spark Starter Kit</h3>
+                        <p class="kit-subtitle">Perfect for ages 8+. Ships Fast!</p>
+                        <div class="kit-image-area">
+                            <span class="image-placeholder-text">Arduino, Wires, Motors & More!</span>
+                            <div class="placeholder-icon icon-arduino"></div>
+                            <div class="placeholder-icon icon-motor"></div>
+                        </div>
+                        <!-- CHANGED: Nepali Rupees Symbol -->
+                        <p class="kit-price">रू 5000</p>
+                        <button class="kit-button" onclick="alert('Ordering coming soon! Get ready!')">Order Now!</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section - (Now in the middle) -->
+        <section class="call-to-action animate-on-scroll">
+            <h2>Explore More Adventures!</h2>
+            <p>Check out tutorials, projects, and challenges!</p>
+            <button class="cta-button" onclick="alert('More adventures coming soon!')">Let's Go!</button>
+        </section>
+
+        <!-- Mini Game Section - MOVED TO BOTTOM -->
+        <section class="game-section animate-on-scroll">
+            <h2>Arduino Car Dash!</h2>
+            <p class="instructions">Use the buttons or Arrow Keys to steer!</p>
+            <div class="game-container">
+                <div class="track" id="track">
+                    <div class="car" id="car">🚗</div>
+                </div>
+                <div class="game-controls">
+                    <button id="leftButton" class="control-button left">◀ Left</button>
+                    <button id="rightButton" class="control-button right">Right ▶</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2023 Wired Circuit Adventure Zone! Keep Tinkering!</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
