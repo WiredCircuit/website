@@ -1,74 +1,187 @@
-// --- Remove Old Circuit Logic ---
-// (All variables and functions related to switches and bulb are gone)
 
-// --- Mini Game Logic --- NEW ---
-const car = document.getElementById('car');
-const track = document.getElementById('track');
-const leftButton = document.getElementById('leftButton');
-const rightButton = document.getElementById('rightButton');
+// Scroll Animation for How It Works Steps
+document.addEventListener('DOMContentLoaded', function () {
+    const steps = document.querySelectorAll('.step');
 
-let carPosPercent = 50; // Position as percentage of track width (start at 50%)
-const moveStepPercent = 5; // Move 5% of the track width per click
+    function checkScroll() {
+        steps.forEach(step => {
+            const position = step.getBoundingClientRect();
 
-function moveCar(direction) {
-    // Calculate track boundaries
-    // We use percentages to make it responsive to track width changes
-    const trackWidth = track.offsetWidth;
-    // The car's visual width is tricky with emoji, approximate or use a fixed width div
-    // For simplicity, let's set boundaries slightly inset from the edges (e.g., 5% margin)
-    const minPercent = 5; // Minimum left percentage
-    const maxPercent = 95; // Maximum left percentage
-
-    if (direction === 'left') {
-        carPosPercent -= moveStepPercent;
-    } else if (direction === 'right') {
-        carPosPercent += moveStepPercent;
+            // If element is in viewport
+            if (position.top < window.innerHeight - 100) {
+                step.classList.add('visible');
+            }
+        });
     }
 
-    // Clamp position within boundaries
-    carPosPercent = Math.max(minPercent, Math.min(maxPercent, carPosPercent));
+    // Check positions initially
+    checkScroll();
 
-    // Apply the transform using percentage
-    // translateX(-50%) keeps the *center* of the car at carPosPercent
-    car.style.left = `${carPosPercent}%`;
-}
+    // Check positions on scroll
+    window.addEventListener('scroll', checkScroll);
 
-// Add event listeners for buttons
-leftButton.addEventListener('click', () => moveCar('left'));
-rightButton.addEventListener('click', () => moveCar('right'));
+    // Mini Game Logic
+    const car = document.getElementById('car');
+    const gameRoad = document.getElementById('gameRoad');
+    const leftBtn = document.getElementById('leftBtn');
+    const rightBtn = document.getElementById('rightBtn');
+    const startBtn = document.getElementById('startBtn');
+    const scoreDisplay = document.getElementById('score');
 
-// Optional: Add keyboard controls for the game
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowLeft') {
-        moveCar('left');
-        leftButton.focus(); // Optional: give visual feedback
-        leftButton.click(); // Trigger active state style
-    } else if (event.key === 'ArrowRight') {
-        moveCar('right');
-        rightButton.focus(); // Optional: give visual feedback
-        rightButton.click(); // Trigger active state style
-    }
-});
+    let carPosition = 50; // percentage from left
+    let gameRunning = false;
+    let obstacles = [];
+    let animationId;
+    let score = 0;
 
-
-// --- Scroll Animation Logic (Keep As Is) ---
-const animatedElements = document.querySelectorAll('.animate-on-scroll');
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            // observer.unobserve(entry.target); // Uncomment if you want animation only once
+    // Car movement
+    function moveCar(direction) {
+        if (direction === 'left' && carPosition > 10) {
+            carPosition -= 5;
+        } else if (direction === 'right' && carPosition < 90) {
+            carPosition += 5;
         }
-        // else { // Uncomment if you want elements to fade out when scrolling up
-        //     entry.target.classList.remove('is-visible');
-        // }
-    });
-}, {
-    root: null,
-    threshold: 0.1 // Adjust threshold if needed (0.1 means 10% visible)
-});
+        car.style.left = carPosition + '%';
+    }
 
-animatedElements.forEach(el => {
-    observer.observe(el);
+    // Event listeners for buttons
+    leftBtn.addEventListener('click', () => moveCar('left'));
+    rightBtn.addEventListener('click', () => moveCar('right'));
+
+    // Event listeners for keyboard
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            moveCar('left');
+        } else if (e.key === 'ArrowRight') {
+            moveCar('right');
+        }
+    });
+
+    // Create obstacles
+    function createObstacle() {
+        const obstacle = document.createElement('div');
+        obstacle.classList.add('obstacle');
+        const randomPosition = Math.floor(Math.random() * 80) + 10; // 10-90%
+        obstacle.style.left = randomPosition + '%';
+        gameRoad.appendChild(obstacle);
+        obstacles.push({
+            element: obstacle,
+            position: randomPosition
+        });
+    }
+
+    // Move obstacles
+    function moveObstacles() {
+        for (let i = 0; i < obstacles.length; i++) {
+            const obstacle = obstacles[i];
+            const obstacleTop = parseInt(window.getComputedStyle(obstacle.element).getPropertyValue('top'));
+
+            // Move obstacle down
+            obstacle.element.style.top = obstacleTop + 3 + 'px';
+
+            // Check if obstacle is out of screen
+            if (obstacleTop > gameRoad.offsetHeight) {
+                obstacle.element.remove();
+                obstacles.splice(i, 1);
+                i--;
+                score++;
+                scoreDisplay.textContent = 'Score: ' + score;
+            }
+
+            // Check collision
+            if (isCollision(car, obstacle.element)) {
+                endGame();
+            }
+        }
+    }
+
+    // Check collision
+    function isCollision(car, obstacle) {
+        const carRect = car.getBoundingClientRect();
+        const obstacleRect = obstacle.getBoundingClientRect();
+
+        return !(
+            carRect.bottom < obstacleRect.top ||
+            carRect.top > obstacleRect.bottom ||
+            carRect.right < obstacleRect.left ||
+            carRect.left > obstacleRect.right
+        );
+    }
+
+    // Game loop
+    function gameLoop() {
+        moveObstacles();
+
+        // Create new obstacle randomly
+        if (gameRunning && Math.random() < 0.02) {
+            createObstacle();
+        }
+
+        if (gameRunning) {
+            animationId = requestAnimationFrame(gameLoop);
+        }
+    }
+
+    // Start game
+    startBtn.addEventListener('click', () => {
+        if (gameRunning) {
+            endGame();
+        } else {
+            startGame();
+        }
+    });
+
+    function startGame() {
+        gameRunning = true;
+        score = 0;
+        scoreDisplay.textContent = 'Score: ' + score;
+        carPosition = 50;
+        car.style.left = carPosition + '%';
+
+        // Clear existing obstacles
+        obstacles.forEach(obstacle => obstacle.element.remove());
+        obstacles = [];
+
+        startBtn.textContent = 'Stop Game';
+        animationId = requestAnimationFrame(gameLoop);
+    }
+
+    function endGame() {
+        gameRunning = false;
+        cancelAnimationFrame(animationId);
+        startBtn.textContent = 'Start Game';
+        alert('Game Over! Your score: ' + score);
+    }
+
+    // Create lane markers
+    function createLaneMarkers() {
+        for (let i = 0; i < 6; i++) {
+            const marker = document.createElement('div');
+            marker.classList.add('lane-marker');
+            marker.style.top = (i * 60) - 60 + 'px';
+            gameRoad.appendChild(marker);
+
+            // Animate lane markers
+            animateLaneMarker(marker);
+        }
+    }
+
+    function animateLaneMarker(marker) {
+        let position = parseInt(marker.style.top);
+
+        function move() {
+            position += 2;
+            if (position > gameRoad.offsetHeight) {
+                position = -50;
+            }
+            marker.style.top = position + 'px';
+            if (gameRunning) {
+                requestAnimationFrame(move);
+            }
+        }
+
+        requestAnimationFrame(move);
+    }
+
+    createLaneMarkers();
 });
