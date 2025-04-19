@@ -3,109 +3,869 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wired Circuit Adventure Zone!</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- UPDATED: Only Poppins needed now -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Wired Circuit!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: white;
+            background-image: 
+                linear-gradient(to right, rgba(200, 230, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(200, 230, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .company-logo {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .company-logo img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #f9e356;
+        }
+
+        .nav-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .cta-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(52, 152, 219, 0.1), white);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
+            padding-right: 40px;
+        }
+
+        .hero-images {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 15px;
+        }
+
+        .hero-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 150px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #2980b9;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        /* Kit Showcase */
+        .kit-showcase {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #2980b9;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 80%;
+            object-fit: contain;
+        }
+
+        .product-details {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2980b9;
+            margin-bottom: 20px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .step {
+            width: 300px;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: #f9e356;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #2980b9;
+        }
+
+        .step h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #2980b9;
+        }
+
+        .step p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Mini Game */
+        .mini-game {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            margin: 40px auto;
+            background-color: #f5f5f5;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 2px solid #3498db;
+        }
+
+        .road {
+            width: 100%;
+            height: 100%;
+            background-color: #555;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lane-marker {
+            position: absolute;
+            width: 10px;
+            height: 50px;
+            background-color: white;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .car {
+            width: 40px;
+            height: 70px;
+            background-color: #e74c3c;
+            position: absolute;
+            bottom: 100px;  /* Changed from bottom: 20px */
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            transition: left 0.2s ease;
+            z-index: 10;  /* Make sure car appears above the lane markers */
+        }
+
+        .car:before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 15px;
+            background-color: #3498db;
+            top: 10px;
+            left: 10%;
+            border-radius: 3px;
+        }
+
+        .car:after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 15px;
+            background-color: #3498db;
+            bottom: 10px;
+            left: 10%;
+            border-radius: 3px;
+        }
+
+        .obstacle {
+            width: 30px;
+            height: 30px;
+            background-color: #f9e356;
+            position: absolute;
+            top: -30px;
+            border-radius: 50%;
+        }
+
+        .game-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .game-button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .game-button:hover {
+            background-color: #2980b9;
+        }
+
+        .game-instructions {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .game-score {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2980b9;
+            margin-top: 20px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(to top, rgba(52, 152, 219, 0.1), white);
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #2980b9;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2980b9;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .footer-links li {
+            margin: 0 15px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #f9e356;
+        }
+
+        .copyright {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .steps-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <header class="header">
-        <!-- Removed Zap emojis for cleaner look -->
-        <h1>Wired Circuit<br>Adventure Zone!</h1>
-        <p class="subtitle">Build, Code, and Play!</p>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <div class="company-logo">
+                        <img src="./wiredcircuit.png" alt="Company Logo">
+                    </div>
+                    <div class="logo">
+                        <span class="logo-icon">⚡</span>
+                        Wired Circuit!
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#kits">Kits</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#game">Mini Game</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main class="main-content">
-
-        <!-- Kits Section -->
-        <section class="kits-section animate-on-scroll">
-            <h2>Get Your Spark Starter Kit!</h2>
-            <div class="kits-container">
-                <div class="kit-card">
-                    <!-- Removed Kit Tag for cleaner look -->
-                    <!-- <div class="kit-tag">For Kids</div> -->
-                    <div class="kit-content">
-                        <h3>Spark Starter Kit</h3>
-                        <p class="kit-subtitle">Perfect for ages 8+. Ships Fast!</p>
-                        <div class="kit-image-area">
-                            <!-- Keep placeholder structure, but styling will change -->
-                            <span class="image-placeholder-text">Arduino, Wires, Motors & More!</span>
-                            <div class="placeholder-icon icon-arduino"></div>
-                            <div class="placeholder-icon icon-motor"></div>
-                        </div>
-                        <p class="kit-price">रू 5000</p>
-                        <button class="kit-button" onclick="alert('Ordering coming soon! Get ready!')">Order Now!</button>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Circuit Adventures For Young Inventors</h1>
+                    <p>Explore the exciting world of electronics with hands-on kits designed for curious minds. Build, learn, and create with our engaging educational electronics.</p>
+                    <button class="cta-button">Shop Now</button>
+                </div>
+                <div class="hero-images">
+                    <div class="hero-image">
+                        <img src="./ghiblikit.png" alt="Kid building circuit">
+                    </div>
+                    <div class="hero-image">
+                        <img src="./wiredcircuit.png" alt="LED project">
+                    </div>
+                    <div class="hero-image">
+                        <img src="./realkit.jpeg" alt="Circuit board">
+                    </div>
+                    <div class="hero-image">
+                        <img src="./HappyNewyear.png" alt="Kids learning electronics">
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- How It Works Section -->
-        <section class="how-it-works-section animate-on-scroll">
-            <h2>How Wired Circuit Works!</h2>
+    <!-- Kit Showcase -->
+    <section class="kit-showcase" id="kits">
+        <div class="container">
+            <h2 class="section-title">Start Your Adventure</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./ghiblikit.png" alt="Beginner's Circuit Kit">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Beginner's Circuit Kit</h3>
+                        <p class="product-description">Perfect for young explorers! This starter kit includes 15 exciting projects with LEDs, motors, and sensors. Everything you need to start your electronics adventure!</p>
+                        <div class="product-price">रू 2,500</div>
+                        <button class="cta-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./wiredcircuit.png" alt="Solar Explorer Kit">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Solar Explorer Kit</h3>
+                        <p class="product-description">Harness the power of the sun! Build solar-powered robots, cars, and gadgets while learning about renewable energy. Includes solar panels and motor components.</p>
+                        <div class="product-price">रू 3,800</div>
+                        <button class="cta-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./realkit.jpeg" alt="Digital Logic Lab">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Digital Logic Lab</h3>
+                        <p class="product-description">Explore the basics of computer science! Learn about digital logic gates, binary numbers, and how computers think. Build your own simple calculator and digital games.</p>
+                        <div class="product-price">रू 4,200</div>
+                        <button class="cta-button">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
             <div class="steps-container">
-                <!-- Step 1: Build -->
-                <div class="step-item">
-                    <div class="step-number-circle">1</div> <!-- Yellow accent here -->
-                    <h4 class="step-title">Build</h4>
-                    <p class="step-description">Unbox your kit & build cool circuits with easy step-by-step guides.</p>
-                    <div class="step-image-placeholder">
-                        🧱<span class="placeholder-img-text">Build</span>
-                    </div>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Kit</h3>
+                    <p>Browse our selection of age-appropriate electronics kits designed to spark curiosity and creativity.</p>
                 </div>
-                <!-- Step 2: Learn/Play -->
-                <div class="step-item">
-                    <div class="step-number-circle">2</div> <!-- Yellow accent here -->
-                    <h4 class="step-title">Learn & Play</h4>
-                    <p class="step-description">Experiment, tinker, and see how your circuits bring ideas to life!</p>
-                    <div class="step-image-placeholder">
-                         💡<span class="placeholder-img-text">Learn</span>
-                    </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Build & Experiment</h3>
+                    <p>Follow our easy step-by-step guides to build exciting projects and learn about electronics basics.</p>
                 </div>
-                <!-- Step 3: Create -->
-                <div class="step-item">
-                    <div class="step-number-circle">3</div> <!-- Yellow accent here -->
-                    <h4 class="step-title">Create</h4>
-                    <p class="step-description">Invent your own gadgets & projects using your new circuit skills!</p>
-                    <div class="step-image-placeholder">
-                         🚀<span class="placeholder-img-text">Create</span>
-                    </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Invent & Create</h3>
+                    <p>Use your new skills to invent your own creations and share them with our community of young inventors!</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-         <!-- Call to Action Section -->
-         <section class="call-to-action animate-on-scroll">
-             <h2>Ready for More Adventures?</h2>
-             <p>Explore exciting lessons, build virtual circuits, and play cool games!</p>
-             <button class="cta-button" onclick="alert('More adventures coming soon!')">Let's Explore!</button>
-         </section>
-
-        <!-- Mini Game Section -->
-        <section class="game-section animate-on-scroll">
-            <h2>Arduino Car Dash!</h2>
-            <p class="instructions">Use the buttons or Arrow Keys to steer!</p>
+    <!-- Mini Game -->
+    <section class="mini-game" id="game">
+        <div class="container">
+            <h2 class="section-title">Circuit Car Challenge</h2>
+            <p class="game-instructions">Steer your car left and right to avoid obstacles! Use the buttons below or the left/right arrow keys on your keyboard.</p>
             <div class="game-container">
-                <div class="track" id="track">
-                    <div class="car" id="car">🚗</div>
-                </div>
-                <div class="game-controls">
-                    <!-- Buttons styled blue now -->
-                    <button id="leftButton" class="control-button left">◀ Left</button>
-                    <button id="rightButton" class="control-button right">Right ▶</button>
+                <div class="road" id="gameRoad">
+                    <div class="car" id="car"></div>
                 </div>
             </div>
-        </section>
+            <div class="game-controls">
+                <button class="game-button" id="leftBtn">Move Left</button>
+                <button class="game-button" id="startBtn">Start Game</button>
+                <button class="game-button" id="rightBtn">Move Right</button>
+            </div>
+            <div class="game-score" id="score">Score: 0</div>
+        </div>
+    </section>
 
-    </main>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Circuit Adventure?</h2>
+            <p>Ignite a passion for STEM with our fun and educational electronics kits designed specifically for curious young minds.</p>
+            <button class="cta-button">Get Started Today</button>
+        </div>
+    </section>
 
-    <footer class="footer">
-        <p>© 2023 Wired Circuit Adventure Zone! Keep Tinkering!</p>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Shipping</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <p class="copyright">© 2025 Wired Circuit Adventure Zone! All rights reserved.</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Scroll Animation for How It Works Steps
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step');
+            
+            function checkScroll() {
+                steps.forEach(step => {
+                    const position = step.getBoundingClientRect();
+                    
+                    // If element is in viewport
+                    if(position.top < window.innerHeight - 100) {
+                        step.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Check positions initially
+            checkScroll();
+            
+            // Check positions on scroll
+            window.addEventListener('scroll', checkScroll);
+            
+            // Mini Game Logic
+            const car = document.getElementById('car');
+            const gameRoad = document.getElementById('gameRoad');
+            const leftBtn = document.getElementById('leftBtn');
+            const rightBtn = document.getElementById('rightBtn');
+            const startBtn = document.getElementById('startBtn');
+            const scoreDisplay = document.getElementById('score');
+            
+            let carPosition = 50; // percentage from left
+            let gameRunning = false;
+            let obstacles = [];
+            let animationId;
+            let score = 0;
+            
+            // Car movement
+            function moveCar(direction) {
+                if (direction === 'left' && carPosition > 10) {
+                    carPosition -= 5;
+                } else if (direction === 'right' && carPosition < 90) {
+                    carPosition += 5;
+                }
+                car.style.left = carPosition + '%';
+            }
+            
+            // Event listeners for buttons
+            leftBtn.addEventListener('click', () => moveCar('left'));
+            rightBtn.addEventListener('click', () => moveCar('right'));
+            
+            // Event listeners for keyboard
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    moveCar('left');
+                } else if (e.key === 'ArrowRight') {
+                    moveCar('right');
+                }
+            });
+            
+            // Create obstacles
+            function createObstacle() {
+                const obstacle = document.createElement('div');
+                obstacle.classList.add('obstacle');
+                const randomPosition = Math.floor(Math.random() * 80) + 10; // 10-90%
+                obstacle.style.left = randomPosition + '%';
+                gameRoad.appendChild(obstacle);
+                obstacles.push({
+                    element: obstacle,
+                    position: randomPosition
+                });
+            }
+            
+            // Move obstacles
+            function moveObstacles() {
+                for(let i = 0; i < obstacles.length; i++) {
+                    const obstacle = obstacles[i];
+                    const obstacleTop = parseInt(window.getComputedStyle(obstacle.element).getPropertyValue('top'));
+                    
+                    // Move obstacle down
+                    obstacle.element.style.top = obstacleTop + 3 + 'px';
+                    
+                    // Check if obstacle is out of screen
+                    if (obstacleTop > gameRoad.offsetHeight) {
+                        obstacle.element.remove();
+                        obstacles.splice(i, 1);
+                        i--;
+                        score++;
+                        scoreDisplay.textContent = 'Score: ' + score;
+                    }
+                    
+                    // Check collision
+                    if (isCollision(car, obstacle.element)) {
+                        endGame();
+                    }
+                }
+            }
+            
+            // Check collision
+            function isCollision(car, obstacle) {
+                const carRect = car.getBoundingClientRect();
+                const obstacleRect = obstacle.getBoundingClientRect();
+                
+                return !(
+                    carRect.bottom < obstacleRect.top ||
+                    carRect.top > obstacleRect.bottom ||
+                    carRect.right < obstacleRect.left ||
+                    carRect.left > obstacleRect.right
+                );
+            }
+            
+            // Game loop
+            function gameLoop() {
+                moveObstacles();
+                
+                // Create new obstacle randomly
+                if (gameRunning && Math.random() < 0.02) {
+                    createObstacle();
+                }
+                
+                if (gameRunning) {
+                    animationId = requestAnimationFrame(gameLoop);
+                }
+            }
+            
+            // Start game
+            startBtn.addEventListener('click', () => {
+                if (gameRunning) {
+                    endGame();
+                } else {
+                    startGame();
+                }
+            });
+            
+            function startGame() {
+                gameRunning = true;
+                score = 0;
+                scoreDisplay.textContent = 'Score: ' + score;
+                carPosition = 50;
+                car.style.left = carPosition + '%';
+                
+                // Clear existing obstacles
+                obstacles.forEach(obstacle => obstacle.element.remove());
+                obstacles = [];
+                
+                startBtn.textContent = 'Stop Game';
+                animationId = requestAnimationFrame(gameLoop);
+            }
+            
+            function endGame() {
+                gameRunning = false;
+                cancelAnimationFrame(animationId);
+                startBtn.textContent = 'Start Game';
+                alert('Game Over! Your score: ' + score);
+            }
+            
+            // Create lane markers
+            function createLaneMarkers() {
+                for (let i = 0; i < 6; i++) {
+                    const marker = document.createElement('div');
+                    marker.classList.add('lane-marker');
+                    marker.style.top = (i * 60) - 60 + 'px';
+                    gameRoad.appendChild(marker);
+                    
+                    // Animate lane markers
+                    animateLaneMarker(marker);
+                }
+            }
+            
+            function animateLaneMarker(marker) {
+                let position = parseInt(marker.style.top);
+                
+                function move() {
+                    position += 2;
+                    if (position > gameRoad.offsetHeight) {
+                        position = -50;
+                    }
+                    marker.style.top = position + 'px';
+                    if (gameRunning) {
+                        requestAnimationFrame(move);
+                    }
+                }
+                
+                requestAnimationFrame(move);
+            }
+            
+            createLaneMarkers();
+        });
+    </script>
 </body>
 </html>
