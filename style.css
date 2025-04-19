@@ -1,24 +1,29 @@
-/* --- Global Styles & New Theme --- */
+/* --- Global Styles & Blue/White Theme --- */
 :root {
-    --primary-blue: #0077cc; /* Bright Blue */
-    --dark-blue: #005aaa;
-    --light-blue: #66b3ff;
-    /* UPDATED: More Vibrant Yellows */
-    --accent-yellow: #ffde0a; /* A very vibrant, almost goldish yellow */
-    --light-yellow: #fff080;  /* A complementary lighter, vibrant shade */
-    --accent-red: #e63946; /* Bright Red */
-    --dark-red: #d62828;
+    --primary-blue: #007bff; /* Standard Bootstrap Blue - vibrant but clean */
+    --dark-blue: #0056b3;   /* Darker Blue */
+    --light-blue: #cce5ff; /* Lighter blue accent/background */
+    /* Minimal Yellow */
+    --accent-yellow: #ffc107; /* Standard Bootstrap Yellow - use sparingly */
+    /* Accent Red for Buttons */
+    --accent-red: #dc3545; /* Standard Bootstrap Red */
+    --dark-red: #c82333;
     --white: #ffffff;
-    --off-white: #f8f9fa;
-    --grey: #adb5bd;
-    --dark-grey: #343a40;
+    --off-white: #f8f9fa; /* Light grey background */
+    --grey: #ced4da;      /* Borders, placeholders */
+    --dark-grey: #495057;  /* Body text */
+    --black: #212529;     /* Headings */
 
-    --font-heading: 'Bangers', cursive;
-    --font-body: 'Poppins', sans-serif;
+    /* UPDATED: Single Font Family */
+    --font-main: 'Poppins', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 body {
-    font-family: var(--font-body);
+    font-family: var(--font-main);
     color: var(--dark-grey);
     margin: 0;
     padding: 0;
@@ -26,424 +31,474 @@ body {
     flex-direction: column;
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: var(--light-blue); /* Fallback */
+    background-color: var(--white); /* White background */
+    /* Subtle Blue Grid */
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        linear-gradient(rgba(0, 123, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 123, 255, 0.05) 1px, transparent 1px);
     background-size: 30px 30px;
     background-position: center center;
 }
 
-h1, h2, h3 {
-    font-family: var(--font-heading);
-    letter-spacing: 2px;
+h1, h2, h3, h4 {
+    font-family: var(--font-main); /* Consistent font */
     text-align: center;
+    color: var(--black); /* Darker headings */
+    font-weight: 700; /* Bold headings */
 }
 
-/* --- NEW Title Effect --- */
+/* Clean Title */
 h1 {
-    font-size: 4em; /* Keep size */
-    color: var(--white); /* Text fill color */
-    line-height: 1.1;
-    margin-bottom: 5px;
-    /* Stroke Effect (Outline) */
-    -webkit-text-stroke: 2.5px var(--accent-yellow); /* Stroke width and color */
-    text-stroke: 2.5px var(--accent-yellow); /* Standard property (less support) */
-    /* Subtle Shadow for Depth */
-    text-shadow: 4px 4px 0px var(--dark-blue); /* Keep dark blue shadow but maybe simpler */
-    /* Optional: Add another very subtle dark shadow just for crispness */
-    /* text-shadow: 4px 4px 0px var(--dark-blue), 1px 1px 1px rgba(0,0,0,0.5); */
+    font-size: 3em; /* Adjusted size */
+    color: var(--white); /* White text on blue header */
+    line-height: 1.2;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle shadow */
 }
-
 
 h2 {
-    font-size: 3em;
-    color: var(--primary-blue);
-    margin-bottom: 25px;
-    /* Use new vibrant yellow for shadow */
-    text-shadow: 2px 2px 0px var(--light-yellow);
+    font-size: 2.2em;
+    color: var(--primary-blue); /* Blue section titles */
+    margin-bottom: 35px; /* Increased spacing */
+    font-weight: 700;
 }
 
-h3 {
-    font-size: 2em;
-    color: var(--dark-blue);
+h3 { /* Kit title */
+    font-size: 1.6em;
+    color: var(--black);
     margin-top: 0;
-    margin-bottom: 5px;
-    text-shadow: 1px 1px 0px var(--light-blue);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+h4 { /* How-it-works step title */
+    font-size: 1.3em;
+    color: var(--dark-blue);
+    margin-bottom: 10px;
+    font-weight: 700; /* Bold step title */
 }
 
 p {
-    line-height: 1.6;
+    line-height: 1.7; /* Slightly more line spacing */
     text-align: center;
-    font-size: 1.1em;
-    max-width: 700px;
+    font-size: 1rem; /* Base size */
+    max-width: 650px; /* Limit line length */
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 1em;
 }
 
 /* --- Header --- */
 .header {
-    background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
-    padding: 40px 20px 30px 20px;
-    /* Use new vibrant yellow for border */
-    border-bottom: 8px solid var(--accent-yellow);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: var(--primary-blue); /* Solid blue header */
+    padding: 30px 20px 25px 20px;
+    /* Blue border, less prominent */
+    border-bottom: 4px solid var(--dark-blue);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     text-align: center;
 }
 
 .subtitle {
-    font-size: 1.4em;
-    /* Use new vibrant yellow */
-    color: var(--light-yellow);
-    font-weight: bold;
-    margin-top: 10px;
+    font-size: 1.2em;
+    /* Lighter text on blue */
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 400; /* Regular weight */
+    margin-top: 5px;
 }
 
-.zap {
-    display: inline-block;
-    /* Use new vibrant yellow */
-    color: var(--accent-yellow);
-    font-size: 1em;
-    text-shadow: 2px 2px 0px var(--dark-red);
-    animation: zap-animation 0.7s infinite alternate;
-    vertical-align: baseline;
-    margin: 0 5px;
-}
-
-@keyframes zap-animation {
-    0% { transform: scale(1) rotate(-10deg); }
-    100% { transform: scale(1.2) rotate(10deg); }
-}
+/* Removed Zap styles */
 
 /* --- Main Content & Sections --- */
 .main-content {
     flex-grow: 1;
-    padding: 30px 15px;
+    padding: 40px 15px; /* More vertical padding */
 }
 
 section {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 35px 25px;
+    background-color: var(--white); /* Sections on white bg */
+    padding: 40px 30px; /* Consistent padding */
     margin-bottom: 40px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border: 3px solid var(--primary-blue);
-}
-
-/* --- Mini Game Section --- */
-.game-section {
-    /* Style it same as other sections, now appears at bottom */
-}
-.game-section .instructions {
-    font-size: 1.2em;
-    color: var(--dark-blue);
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.game-container {
-    background-color: var(--dark-grey);
-    border-radius: 10px;
-    padding: 15px;
-    max-width: 500px;
-    margin: 0 auto;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-}
-
-.track {
-    background-color: #555;
-    height: 60px;
-    border-radius: 5px;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid var(--grey);
-    margin-bottom: 20px;
-}
-
-.car {
-    font-size: 35px;
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: transform 0.2s linear, left 0.2s linear; /* Ensure left is transitioned too */
-}
-
-.game-controls {
-    display: flex;
-    justify-content: space-around;
-}
-
-.control-button {
-    font-family: var(--font-heading);
-    font-size: 1.4em;
-    padding: 10px 25px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.1s ease, box-shadow 0.2s ease, background-color 0.2s ease; /* Added background-color */
-    /* Use new vibrant yellow */
-    background-color: var(--accent-yellow);
-    color: var(--dark-blue);
-    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
-    /* Adjust shadow color for new yellow */
-    box-shadow: 0 4px 0px #d1b708; /* Darker shade of new yellow */
-}
-
-.control-button:hover {
-    /* Use new vibrant light yellow */
-    background-color: var(--light-yellow);
-}
-
-.control-button:active {
-    transform: translateY(3px);
-    /* Adjust shadow color for new yellow */
-    box-shadow: 0 1px 0px #d1b708;
+    border-radius: 12px; /* Softer corners */
+    /* Subtle shadow instead of border */
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.08);
+    border: 1px solid #eee; /* Very light border */
 }
 
 /* --- Kits Section Styling --- */
 .kits-section {
-    /* Use new vibrant light yellow */
-    background-color: var(--light-yellow);
-    /* Use new vibrant accent yellow */
-    border-color: var(--accent-yellow);
+     background-color: var(--off-white); /* Slightly off-white bg for this section */
 }
 
 .kits-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch; /* Make cards same height */
     flex-wrap: wrap;
     gap: 30px;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 .kit-card {
-    background-color: var(--primary-blue);
-    border-radius: 15px;
-    max-width: 380px;
-    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+    background-color: var(--white); /* White card */
+    border-radius: 10px; /* Consistent radius */
+    max-width: 350px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Softer shadow */
     position: relative;
     overflow: hidden;
-    border: 4px solid var(--dark-blue);
-    transform: rotate(-2deg);
-    transition: transform 0.3s ease;
+    border: 1px solid var(--grey); /* Subtle border */
+    /* Removed tilt */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; /* Use flex for content alignment */
+    flex-direction: column;
 }
-
 .kit-card:hover {
-    transform: rotate(1deg) scale(1.02);
+     transform: translateY(-4px);
+     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
-
-.kit-tag {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    /* Use new vibrant accent yellow */
-    background-color: var(--accent-yellow);
-    color: var(--dark-blue);
-    font-family: var(--font-body);
-    font-weight: bold;
-    padding: 6px 20px;
-    border-radius: 15px;
-    font-size: 0.9em;
-    z-index: 1;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    border: 2px solid var(--dark-blue);
-}
+/* Removed kit-tag styles */
 
 .kit-content {
-    padding: 40px 25px 25px 25px;
+    padding: 25px;
     text-align: center;
-    color: var(--white);
-}
-
-.kit-content h3 {
-    color: var(--white);
-    text-shadow: 2px 2px 0px var(--dark-blue);
+    color: var(--dark-grey);
+    flex-grow: 1; /* Allow content to push button down */
+    display: flex;
+    flex-direction: column;
 }
 
 .kit-subtitle {
-    font-size: 1em;
-    /* Use new vibrant light yellow */
-    color: var(--light-yellow);
+    font-size: 0.95em;
+    color: var(--dark-grey);
     margin-bottom: 20px;
 }
 
 .kit-image-area {
-    background-color: rgba(0, 0, 0, 0.1);
-    border: 2px dashed var(--light-blue);
-    border-radius: 10px;
-    height: 120px;
+    background-color: var(--off-white); /* Light bg for placeholder */
+    border: 1px solid var(--grey); /* Simple border */
+    border-radius: 8px;
+    height: 140px; /* Adjusted height */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     position: relative;
     padding: 10px;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 15px 15px;
+    /* Removed grid */
 }
 
 .image-placeholder-text {
-    font-weight: bold;
-    font-size: 1.1em;
-     /* Use new vibrant light yellow */
-    color: var(--light-yellow);
+    font-weight: 500; /* Medium weight */
+    font-size: 1em;
+    color: var(--dark-grey);
     margin-bottom: 10px;
 }
 .placeholder-icon {
     position: absolute;
-    width: 30px; height: 30px;
-    background-color: var(--accent-yellow); /* Use vibrant yellow for icons */
-    border-radius: 5px;
-    border: 1px solid var(--dark-blue);
+    width: 25px; height: 25px; /* Smaller icons */
+    border-radius: 4px;
+    border: none;
 }
-.icon-arduino { bottom: 10px; left: 15px; background-color: #00979D;}
-.icon-motor { bottom: 10px; right: 15px; background-color: var(--grey); }
+.icon-arduino { bottom: 12px; left: 15px; background-color: #17a2b8;} /* Bootstrap info color */
+.icon-motor { bottom: 12px; right: 15px; background-color: var(--grey); }
 
 
 .kit-price {
-    font-family: var(--font-body);
-    font-size: 1.8em;
-    font-weight: bold;
-     /* Use new vibrant accent yellow */
-    color: var(--accent-yellow);
-    margin: 15px 0;
-    text-shadow: 1px 1px 0 var(--dark-blue);
+    font-family: var(--font-main);
+    font-size: 1.5em; /* Adjusted size */
+    font-weight: 700; /* Bold price */
+    color: var(--black); /* Black price */
+    margin: auto 0 20px 0; /* Pushes to bottom before button */
 }
 
-.kit-button {
-    font-family: var(--font-heading);
+.kit-button { /* Red Button */
+    font-family: var(--font-main);
+    font-weight: 500;
     background-color: var(--accent-red);
     color: white;
     border: none;
-    padding: 12px 30px;
-    font-size: 1.3em;
-    border-radius: 25px;
+    padding: 10px 25px;
+    font-size: 1rem;
+    border-radius: 20px; /* Pill shape */
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    text-shadow: 1px 1px 0px var(--dark-red);
-    box-shadow: 0 4px 0px var(--dark-red);
-    margin-top: 10px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(220, 53, 69, 0.3);
+    margin-top: auto; /* Ensure it's at the bottom */
+    align-self: center; /* Center horizontally */
 }
-
 .kit-button:hover {
-    background-color: #ff5c6a;
+    background-color: var(--dark-red);
     transform: scale(1.03);
 }
 .kit-button:active {
-     transform: translateY(3px) scale(1.03);
-     box-shadow: 0 1px 0px var(--dark-red);
+     transform: scale(0.98);
 }
 
+
+/* --- How It Works Section Styling --- */
+.how-it-works-section {
+     /* Uses default section style (white bg) */
+}
+
+.steps-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 25px; /* Slightly reduced gap */
+}
+
+.step-item {
+    flex: 1;
+    min-width: 250px;
+    max-width: 320px;
+    text-align: center;
+    padding: 10px;
+}
+
+.step-number-circle { /* ONLY Yellow Use */
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent-yellow);
+    color: var(--black); /* Black number */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px auto;
+    font-family: var(--font-main); /* Poppins bold */
+    font-weight: 700;
+    font-size: 1.4em;
+    border: none; /* Removed border */
+    box-shadow: 0 3px 6px rgba(255, 193, 7, 0.3); /* Subtle yellow shadow */
+}
+
+.step-title { /* Already defined in h4 */
+    margin-bottom: 8px;
+}
+
+.step-description {
+    font-size: 0.95rem; /* Slightly smaller desc text */
+    color: var(--dark-grey);
+    margin-bottom: 20px;
+    padding: 0 5px;
+    min-height: 3.5em;
+}
+
+.step-image-placeholder {
+    height: 130px; /* Adjusted height */
+    background-color: var(--off-white);
+    border: 1px solid var(--grey);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6em; /* Emoji size */
+    color: var(--primary-blue); /* Blue emoji */
+    line-height: 1.2;
+}
+.placeholder-img-text { /* Styling for text below emoji */
+    font-size: 0.6em;
+    font-weight: 500;
+    margin-top: 8px;
+    color: var(--dark-grey);
+    font-family: var(--font-main);
+}
 
 /* --- Call to Action Section --- */
 .call-to-action {
-    /* Use new vibrant yellows in gradient */
-    background: linear-gradient(45deg, var(--accent-yellow), var(--light-yellow), var(--accent-yellow));
-    /* Use new vibrant accent yellow */
-    border-color: var(--accent-yellow);
-    padding: 50px 20px;
+    /* Light blue gradient background */
+    background: linear-gradient(135deg, #e6f2ff, var(--white));
+    border: 1px solid var(--light-blue); /* Light blue border */
+    padding: 50px 30px;
 }
 .call-to-action h2 {
      color: var(--dark-blue);
-     text-shadow: 2px 2px 0px var(--white);
+     text-shadow: none;
 }
 .call-to-action p {
-    color: var(--dark-blue);
-    font-size: 1.2em;
-    font-weight: bold;
+    color: var(--dark-grey);
+    font-size: 1.1em;
+    margin-bottom: 30px;
 }
 
-.cta-button {
-    font-family: var(--font-heading);
+.cta-button { /* Red Button */
+    font-family: var(--font-main);
+    font-weight: 500;
     background-color: var(--accent-red);
     color: white;
     border: none;
-    padding: 15px 40px;
-    font-size: 1.6em;
-    border-radius: 30px;
+    padding: 12px 35px; /* Slightly larger padding */
+    font-size: 1.1em;
+    border-radius: 25px; /* Pill shape */
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    text-shadow: 1px 1px 0px var(--dark-red);
-    box-shadow: 0 5px 0px var(--dark-red);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 3px 8px rgba(220, 53, 69, 0.35);
     display: block;
-    margin: 30px auto 0 auto;
+    margin: 0 auto;
 }
-
 .cta-button:hover {
-    background-color: #ff5c6a;
-    transform: scale(1.05);
+    background-color: var(--dark-red);
+    transform: scale(1.03);
 }
 .cta-button:active {
-     transform: translateY(4px) scale(1.05);
-     box-shadow: 0 1px 0px var(--dark-red);
+     transform: scale(0.98);
 }
+
+/* --- Mini Game Section --- */
+.game-section {
+     /* Uses default section style */
+}
+.game-section .instructions {
+    font-size: 1.1em;
+    color: var(--dark-grey);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.game-container {
+    background-color: var(--off-white); /* Lighter container */
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 450px; /* Slightly narrower */
+    margin: 0 auto;
+    border: 1px solid var(--grey);
+    box-shadow: none; /* Removed inset shadow */
+}
+
+.track {
+    background-color: var(--grey); /* Lighter track */
+    height: 50px; /* Reduced height */
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    border: none; /* Remove border */
+    margin-bottom: 20px;
+}
+
+.car {
+    font-size: 30px; /* Adjusted size */
+    position: absolute;
+    bottom: 2px; /* Adjusted position */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: left 0.2s linear; /* Only transition left */
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center; /* Center buttons */
+    gap: 20px; /* Gap between buttons */
+}
+
+.control-button { /* Blue Buttons */
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px; /* Pill shape */
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3); /* Blue shadow */
+}
+.control-button:hover {
+    background-color: var(--dark-blue);
+     transform: scale(1.03);
+}
+.control-button:active {
+    transform: scale(0.98);
+}
+
 
 /* --- Footer --- */
 .footer {
-    background-color: var(--dark-blue);
+    background-color: var(--dark-grey); /* Dark grey footer */
     color: var(--off-white);
     text-align: center;
     padding: 25px 10px;
     margin-top: auto;
-    font-size: 1em;
-     /* Use new vibrant accent yellow */
-    border-top: 5px solid var(--accent-yellow);
+    font-size: 0.9rem;
+    border-top: none; /* Remove border */
 }
 .footer p {
     max-width: none;
-    color: var(--off-white);
+    color: rgba(255,255,255,0.8); /* Lighter footer text */
+    margin-bottom: 0;
 }
 
-/* --- Scroll Animation Styling (Keep As Is) --- */
+/* --- Scroll Animation Styling --- */
 .animate-on-scroll {
     opacity: 0;
-    transform: translateY(50px) scale(0.98);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    transform: translateY(30px); /* Reduced distance */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-
 .animate-on-scroll.is-visible {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
 }
 
-
 /* --- Responsive Adjustments --- */
+@media (max-width: 992px) { /* Adjusted breakpoint */
+     h1 { font-size: 2.5em; }
+     h2 { font-size: 2em; }
+     section { padding: 30px 20px; }
+}
+
 @media (max-width: 768px) {
-    /* Adjust H1 size and stroke for medium screens */
-    h1 { font-size: 3em; -webkit-text-stroke-width: 2px; text-stroke-width: 2px; text-shadow: 3px 3px 0px var(--dark-blue); }
-    h2 { font-size: 2.5em; }
-    h3 { font-size: 1.8em; }
-    .kit-card { transform: rotate(0deg); }
-    .kit-card:hover { transform: scale(1.02); }
+    h1 { font-size: 2.2em; }
+    h2 { font-size: 1.8em; margin-bottom: 25px;}
+    h3 { font-size: 1.4em; }
+    h4 { font-size: 1.2em; }
+    p { font-size: 0.95rem; }
+
+    /* Stack How-it-works steps */
+    .steps-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px; /* Increased gap when stacked */
+    }
+    .step-item {
+        min-width: unset;
+        max-width: 350px;
+        width: 100%;
+    }
+     .step-description {
+        min-height: auto;
+    }
+
+    .main-content { padding: 30px 10px; }
+    section { padding: 25px 15px; }
     .game-container { max-width: 90%; }
 }
 
 
 @media (max-width: 480px) {
-    body { background-size: 20px 20px; }
-     /* Adjust H1 size and stroke for small screens */
-    h1 { font-size: 2.2em; line-height: 1.2; -webkit-text-stroke-width: 1.5px; text-shadow: 2px 2px 0px var(--dark-blue); }
-    h2 { font-size: 2em; }
-    h3 { font-size: 1.6em; }
-    p { font-size: 1em; }
-    .subtitle { font-size: 1.1em; }
-    section { padding: 25px 15px; border-radius: 15px;}
-    .car { font-size: 30px; bottom: 3px; }
-    .track { height: 50px; }
-    .control-button { font-size: 1.2em; padding: 8px 18px; }
-    .kit-card { max-width: 95%; }
-    .kit-content { padding: 35px 15px 15px 15px; }
-    .kit-price { font-size: 1.5em; }
-    .kit-button { font-size: 1.1em; padding: 10px 25px; }
-    .call-to-action { padding: 40px 15px; }
-    .cta-button { font-size: 1.3em; padding: 12px 30px; }
-    .footer { font-size: 0.9em; padding: 20px 10px;}
-    .animate-on-scroll { transform: translateY(30px) scale(0.98); }
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.6em; }
+    h3 { font-size: 1.3em; }
+    h4 { font-size: 1.1em; }
+
+    .subtitle { font-size: 1em; }
+    body { background-size: 20px 20px; } /* Smaller checks subtle */
+
+    .kit-card { max-width: 100%; } /* Full width */
+    .kit-price { font-size: 1.3em; }
+    .kit-button { font-size: 0.95rem; padding: 8px 20px;}
+
+    .step-image-placeholder { height: 110px; }
+    .call-to-action p { font-size: 1rem; }
+    .cta-button { font-size: 1rem; padding: 10px 30px; }
+
+    .control-button { font-size: 0.9rem; padding: 6px 15px; }
+    .car { font-size: 26px; }
+    .track { height: 45px; }
+
+    .footer { font-size: 0.8rem; padding: 20px 10px; }
 }
