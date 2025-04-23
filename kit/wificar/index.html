@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wi-Fi Car Robotics Kit Manual</title>
+  <style>
+    body {
+      display: flex;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #1e1e2f;
+      color: white;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+    }
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+    .content {
+      padding: 30px;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .content h2 {
+      color: #1e1e2f;
+      margin-top: 40px;
+    }
+    img {
+      max-width: 100%;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Manual Contents</h2>
+    <a href="#intro">Welcome & Introduction</a>
+    <a href="#box">Box Contents</a>
+    <a href="#assembly">Assembly Instructions</a>
+    <a href="#circuit">Circuit Diagram</a>
+    <a href="#programming">Programming Guide</a>
+    <a href="#wifi">Wi-Fi Setup</a>
+    <a href="#howworks">How It Works</a>
+    <a href="#troubleshooting">Troubleshooting</a>
+    <a href="#addons">Add-Ons & Upgrades</a>
+    <a href="#showcase">Project Showcase</a>
+    <a href="#support">Support & Contact</a>
+    <a href="#resources">Certification & Resources</a>
+  </div>
+
+  <div class="content">
+    <h2 id="intro">Welcome & Introduction</h2>
+    <p>Welcome to the Wired Circuit Wi-Fi Car Robotics Kit! This kit is designed for kids and beginners to explore the world of robotics using Wi-Fi-enabled microcontrollers. You’ll learn about electronics, programming, and how to build and control your own car wirelessly!</p>
+
+    <h2 id="box">Box Contents</h2>
+    <ul>
+      <li>NodeMCU (ESP8266)</li>
+      <li>Motor Driver (L298N / Custom)</li>
+      <li>Aluminum Chassis</li>
+      <li>2 DC Motors</li>
+      <li>Wheels (x2)</li>
+      <li>Battery holder and switch</li>
+      <li>USB cable</li>
+      <li>Jumper wires</li>
+      <li>Mounting hardware (screws, nuts, etc.)</li>
+    </ul>
+
+    <h2 id="assembly">Assembly Instructions</h2>
+    <ol>
+      <li>Mount the motors to the chassis.</li>
+      <li>Fix the motor driver on the top plate.</li>
+      <li>Attach the wheels to the motor shafts.</li>
+      <li>Connect NodeMCU to the motor driver as per the diagram.</li>
+      <li>Insert the battery and switch into the holder.</li>
+    </ol>
+
+    <h2 id="circuit">Circuit Diagram</h2>
+    <p>Refer to the below diagram for connecting NodeMCU to Motor Driver and power system:</p>
+    <p><em>(Add image of circuit diagram here)</em></p>
+
+    <h2 id="programming">Programming Guide</h2>
+    <ul>
+      <li>Install Arduino IDE and NodeMCU board package.</li>
+      <li>Use USB to connect the board to your computer.</li>
+      <li>Upload the sample code provided in the resources section.</li>
+      <li>Make sure to install required libraries (ESP8266WiFi, etc.).</li>
+    </ul>
+
+    <h2 id="wifi">Wi-Fi Setup</h2>
+    <p>Power the NodeMCU and connect to the provided Wi-Fi hotspot or input your home Wi-Fi credentials in the code. Access the car control interface through the displayed IP in your browser.</p>
+
+    <h2 id="howworks">How It Works</h2>
+    <p>The NodeMCU receives commands over Wi-Fi and sends signals to the motor driver to control the motors. The motor driver directs power to the wheels depending on the inputs from NodeMCU.</p>
+
+    <h2 id="troubleshooting">Troubleshooting</h2>
+    <ul>
+      <li>Not connecting to Wi-Fi – Check credentials.</li>
+      <li>Motors not working – Verify power and connections.</li>
+      <li>Upload failed – Recheck port and driver settings.</li>
+    </ul>
+
+    <h2 id="addons">Add-Ons & Upgrades</h2>
+    <ul>
+      <li>Add line following sensors</li>
+      <li>Bluetooth control with HC-05 module</li>
+      <li>Ultrasonic sensor for obstacle avoidance</li>
+    </ul>
+
+    <h2 id="showcase">Project Showcase</h2>
+    <p>Share your project photos and videos with us! Email or upload them to our community page for a chance to get featured.</p>
+
+    <h2 id="support">Support & Contact</h2>
+    <p>Need help? Reach out:</p>
+    <ul>
+      <li>📧 Email: support@wiredcircuit.com</li>
+      <li>📞 Phone: +977-XXXXXXXXXX</li>
+      <li>💬 WhatsApp Support Available</li>
+    </ul>
+
+    <h2 id="resources">Certification & Resources</h2>
+    <p>Complete the tasks and submit your project to earn a certificate. Download additional resources below:</p>
+    <ul>
+      <li>📄 PDF Guides</li>
+      <li>📚 Glossary of Terms</li>
+      <li>🔗 Code files and examples</li>
+    </ul>
+  </div>
+</body>
+</html>
