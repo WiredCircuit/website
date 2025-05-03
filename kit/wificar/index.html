@@ -4,143 +4,650 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wi-Fi Car Robotics Kit Manual</title>
-  <style>
-    body {
-      display: flex;
-      font-family: Arial, sans-serif;
-      margin: 0;
-    }
-    .sidebar {
-      width: 250px;
-      background-color: #1e1e2f;
-      color: white;
-      height: 100vh;
-      overflow-y: auto;
-      padding: 20px;
-      position: sticky;
-      top: 0;
-    }
-    .sidebar h2 {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin-bottom: 10px;
-    }
-    .sidebar a:hover {
-      text-decoration: underline;
-    }
-    .content {
-      padding: 30px;
-      flex: 1;
-      overflow-y: auto;
-    }
-    .content h2 {
-      color: #1e1e2f;
-      margin-top: 40px;
-    }
-    img {
-      max-width: 100%;
-      margin: 10px 0;
-    }
-  </style>
+  <!-- Link to your CSS -->
+  <link href="./wificar.css" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Prism.js CSS (Theme: Okaidia for dark mode compatibility) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+  <!-- Prism.js Line Numbers CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+  <!-- Prism.js Toolbar CSS (for Copy button) -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+
+</head>
+<!-- data-theme attribute will be set by JS -->
+<body data-theme="dark"> <!-- Added id="top" if needed, though href="#" usually works -->
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <!-- MODIFIED: Wrapped logo in an anchor tag linking to # -->
+      <a href="#" class="sidebar-logo" aria-label="Go to top of page">
+        <i class="fas fa-robot"></i>
+        <span>WiFi Car Kit</span>
+      </a>
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle Sidebar">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <h2>Manual Contents</h2>
+    <ul class="sidebar-nav">
+      <li><a href="#intro" class="active"><i class="fas fa-home"></i> Introduction</a></li>
+      <li><a href="#box"><i class="fas fa-box-open"></i> Box Contents</a></li>
+      <li><a href="#assembly"><i class="fas fa-tools"></i> Assembly</a></li>
+      <li><a href="#circuit"><i class="fas fa-project-diagram"></i> Circuit Diagram</a></li>
+      <li><a href="#programming"><i class="fas fa-code"></i> Programming</a></li>
+      <li><a href="#wifi"><i class="fas fa-wifi"></i> Wi-Fi Setup</a></li>
+      <li><a href="#howworks"><i class="fas fa-cogs"></i> How It Works</a></li>
+      <li><a href="#troubleshooting"><i class="fas fa-wrench"></i> Troubleshooting</a></li>
+      <li><a href="#addons"><i class="fas fa-puzzle-piece"></i> Add-Ons</a></li>
+      <li><a href="#showcase"><i class="fas fa-images"></i> Project Showcase</a></li>
+      <li><a href="#support"><i class="fas fa-headset"></i> Support</a></li>
+      <li><a href="#resources"><i class="fas fa-certificate"></i> Resources</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <header class="main-header">
+      <div class="header-content">
+        <h1>Wi-Fi Car Robotics Kit Manual</h1>
+        <p>Learn electronics, programming, and robotics by building your own Wi-Fi controlled car!</p>
+      </div>
+      <!-- Theme Toggle Button with separate icons for animation -->
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+         <i class="theme-icon-sun fas fa-sun"></i>
+         <i class="theme-icon-moon fas fa-moon"></i>
+      </button>
+    </header>
+
+    <div class="content">
+      <!-- Introduction Section -->
+      <section id="intro" class="section">
+        <h2>Welcome & Introduction</h2>
+        <p>Welcome to the Wired Circuit Wi-Fi Car Robotics Kit! This kit is designed for kids and beginners to explore the world of robotics using Wi-Fi-enabled microcontrollers. You'll learn about electronics, programming, and how to build and control your own car wirelessly!</p>
+        <div class="note">
+          This kit provides hands-on experience with real-world technology concepts including wireless networking, microcontrollers, and motor control systems.
+        </div>
+      </section>
+
+      <!-- Box Contents Section -->
+      <section id="box" class="section">
+        <h2>Box Contents</h2>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Main Components</h3>
+            <ul>
+              <li>NodeMCU (ESP8266)</li>
+              <li>Motor Driver (L298N / Custom)</li>
+              <li>2 DC Motors</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Structural Parts</h3>
+            <ul>
+              <li>Aluminum Chassis</li>
+              <li>Wheels (x2)</li>
+              <li>Mounting hardware (screws, nuts, etc.)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Power & Connectivity</h3>
+            <ul>
+              <li>Battery holder and switch</li>
+              <li>USB cable</li>
+              <li>Jumper wires</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Assembly Section -->
+      <section id="assembly" class="section">
+        <h2>Assembly Instructions</h2>
+        <div class="tabs">
+          <div class="tab active" data-tab="step1">Step 1-2</div>
+          <div class="tab" data-tab="step2">Step 3-4</div>
+          <div class="tab" data-tab="step3">Step 5</div>
+        </div>
+        <div class="tab-content active" id="step1">
+          <ol>
+            <li>Mount the motors to the chassis using the provided screws.</li>
+            <li>Fix the motor driver on the top plate of the chassis using screws and standoffs.</li>
+          </ol>
+          <div class="tip">
+            Ensure the motor orientation is correct before tightening screws. Motors should face the same direction.
+          </div>
+        </div>
+        <div class="tab-content" id="step2">
+          <ol start="3">
+            <li>Attach the wheels to the motor shafts, ensuring they're firmly secured.</li>
+            <li>Connect NodeMCU to the motor driver following the circuit diagram in the next section.</li>
+          </ol>
+          <div class="warning">
+            Improper wire connections may damage your components. Double-check all connections before powering on.
+          </div>
+        </div>
+        <div class="tab-content" id="step3">
+          <ol start="5">
+            <li>Insert the batteries into the holder and connect to the power switch.</li>
+          </ol>
+          <div class="tip">
+            Use fresh alkaline batteries for optimal performance, or rechargeable batteries for longer-term use.
+          </div>
+        </div>
+      </section>
+
+      <!-- Circuit Diagram Section -->
+      <section id="circuit" class="section">
+        <h2>Circuit Diagram</h2>
+        <p>Follow this diagram to connect the NodeMCU to the Motor Driver and power system:</p>
+        <div class="circuit-diagram">
+          <!-- Centered placeholder -->
+          <div class="placeholder-img">
+            <div>
+              <i class="fas fa-microchip fa-4x"></i>
+              <p style="margin-top: 1rem;">[Circuit Diagram Placeholder]</p>
+            </div>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>NodeMCU Pin</th>
+              <th>Motor Driver Connection</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> <td>D1</td> <td>IN1</td> <td>Motor A Direction 1</td> </tr>
+            <tr> <td>D2</td> <td>IN2</td> <td>Motor A Direction 2</td> </tr>
+            <tr> <td>D3</td> <td>IN3</td> <td>Motor B Direction 1</td> </tr>
+            <tr> <td>D4</td> <td>IN4</td> <td>Motor B Direction 2</td> </tr>
+            <tr> <td>GND</td> <td>GND</td> <td>Common Ground</td> </tr>
+            <tr> <td>VIN</td> <td>5V (If needed)</td> <td>Power Supply (Optional)</td> </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Programming Section -->
+      <section id="programming" class="section">
+        <h2>Programming Guide</h2>
+        <div class="card">
+          <h3>Setup Steps</h3>
+          <ul>
+            <li>Install Arduino IDE from <a href="https://www.arduino.cc/en/software" target="_blank" rel="noopener noreferrer">arduino.cc</a></li>
+            <li>Install NodeMCU board package via Boards Manager</li>
+            <li>Connect NodeMCU to your computer via USB</li>
+            <li>Select the correct board and port in Arduino IDE</li>
+            <li>Upload the sample code provided below</li>
+          </ul>
+        </div> <!-- End card -->
+
+        <h3>Sample Code</h3>
+        <!-- Container for code block and copy button -->
+        <div class="code-block-container">
+          <!-- Add line-numbers and language-cpp classes for Prism -->
+          <pre class="line-numbers"><code class="language-cpp">
+#include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
+
+// Wi-Fi credentials
+const char* ssid = "WiFi-Car";
+const char* password = "password123";
+
+// Motor pins (Using common GPIO numbers for NodeMCU)
+// Adjust these pins based on your specific NodeMCU board layout if needed
+const int motor1Pin1 = D1; // GPIO 5
+const int motor1Pin2 = D2; // GPIO 4
+const int motor2Pin1 = D3; // GPIO 0
+const int motor2Pin2 = D4; // GPIO 2
+
+// Create web server on port 80
+ESP8266WebServer server(80);
+
+// --- Function Declarations ---
+void handleRoot();
+void handleForward();
+void handleBackward();
+void handleLeft();
+void handleRight();
+void handleStop();
+void stopMotors();
+void moveForward();
+void moveBackward();
+void turnLeft();
+void turnRight();
+
+
+// --- Setup Function ---
+void setup() {
+  // Initialize serial communication for debugging
+  Serial.begin(115200);
+  Serial.println("\nWiFi Car Setup");
+
+  // Set motor control pins as outputs
+  pinMode(motor1Pin1, OUTPUT);
+  pinMode(motor1Pin2, OUTPUT);
+  pinMode(motor2Pin1, OUTPUT);
+  pinMode(motor2Pin2, OUTPUT);
+
+  // Ensure motors are stopped initially
+  stopMotors();
+  Serial.println("Motors Initialized and Stopped.");
+
+  // Set up NodeMCU as a Wi-Fi Access Point
+  Serial.print("Setting up Access Point...");
+  WiFi.softAP(ssid, password);
+  Serial.println(" Done.");
+
+  IPAddress apIP = WiFi.softAPIP();
+  Serial.print("AP IP address: ");
+  Serial.println(apIP);
+
+  // Define server routes (web page handlers)
+  server.on("/", HTTP_GET, handleRoot);        // Main control page
+  server.on("/forward", HTTP_GET, handleForward);
+  server.on("/backward", HTTP_GET, handleBackward);
+  server.on("/left", HTTP_GET, handleLeft);
+  server.on("/right", HTTP_GET, handleRight);
+  server.on("/stop", HTTP_GET, handleStop);
+
+  // Start the web server
+  server.begin();
+  Serial.println("HTTP server started. Ready for connections.");
+}
+
+// --- Main Loop ---
+void loop() {
+  // Handle incoming client requests
+  server.handleClient();
+}
+
+// --- Web Page Handlers ---
+void handleRoot() {
+  // Send the HTML control page to the client
+  // NOTE: This C++ string contains the HTML for the car's control interface
+  String html = R"rawliteral(
+<!DOCTYPE html>
+<html>
+<head>
+<title>WiFi Car Control</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font-family: Arial, sans-serif; text-align: center; background-color: #2c3e50; color: #ecf0f1; margin:0; padding: 10px; }
+h1 { margin-top: 15px; }
+.btn { background-color: #3498db; border: none; color: white; padding: 15px 25px; /* Adjust padding */
+       text-align: center; text-decoration: none; display: inline-block;
+       font-size: 18px; /* Adjust font size */ margin: 8px; /* Adjust margin */ cursor: pointer; border-radius: 8px;
+       transition: background-color 0.3s; user-select: none; -webkit-user-select: none; /* Prevent text selection */ }
+.btn:hover { background-color: #2980b9; }
+.btn:active { transform: scale(0.95); } /* Click effect */
+.btn-stop { background-color: #e74c3c; }
+.btn-stop:hover { background-color: #c0392b; }
+.grid-container { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, auto); gap: 5px; max-width: 280px; /* Adjust max width */ margin: 20px auto; }
+.grid-item { display: flex; justify-content: center; align-items: center; } /* Center button */
+/* Place buttons in grid */
+.item-fwd { grid-column: 2; grid-row: 1; }
+.item-lft { grid-column: 1; grid-row: 2; }
+.item-stp { grid-column: 2; grid-row: 2; }
+.item-rgt { grid-column: 3; grid-row: 2; }
+.item-bwd { grid-column: 2; grid-row: 3; }
+</style>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Manual Contents</h2>
-    <a href="#intro">Welcome & Introduction</a>
-    <a href="#box">Box Contents</a>
-    <a href="#assembly">Assembly Instructions</a>
-    <a href="#circuit">Circuit Diagram</a>
-    <a href="#programming">Programming Guide</a>
-    <a href="#wifi">Wi-Fi Setup</a>
-    <a href="#howworks">How It Works</a>
-    <a href="#troubleshooting">Troubleshooting</a>
-    <a href="#addons">Add-Ons & Upgrades</a>
-    <a href="#showcase">Project Showcase</a>
-    <a href="#support">Support & Contact</a>
-    <a href="#resources">Certification & Resources</a>
-  </div>
+<h1>WiFi Car Control</h1>
+<div class="grid-container">
+  <div class="grid-item item-fwd"><button class="btn" ontouchstart="sendCommand('/forward');" onmousedown="sendCommand('/forward');" onmouseup="sendCommand('/stop');" ontouchend="sendCommand('/stop');" onmouseleave="sendCommand('/stop');">Forward</button></div>
+  <div class="grid-item item-lft"><button class="btn" ontouchstart="sendCommand('/left');" onmousedown="sendCommand('/left');" onmouseup="sendCommand('/stop');" ontouchend="sendCommand('/stop');" onmouseleave="sendCommand('/stop');">Left</button></div>
+  <div class="grid-item item-stp"><button class="btn btn-stop" ontouchstart="sendCommand('/stop');" onclick="sendCommand('/stop');">Stop</button></div>
+  <div class="grid-item item-rgt"><button class="btn" ontouchstart="sendCommand('/right');" onmousedown="sendCommand('/right');" onmouseup="sendCommand('/stop');" ontouchend="sendCommand('/stop');" onmouseleave="sendCommand('/stop');">Right</button></div>
+  <div class="grid-item item-bwd"><button class="btn" ontouchstart="sendCommand('/backward');" onmousedown="sendCommand('/backward');" onmouseup="sendCommand('/stop');" ontouchend="sendCommand('/stop');" onmouseleave="sendCommand('/stop');">Backward</button></div>
+</div>
+<script>
+var stopTimeout; // Timer to auto-stop if mouse leaves button while pressed
+function sendCommand(command) {
+  clearTimeout(stopTimeout); // Clear any pending stop command
+  fetch(command)
+    .then(response => { if (!response.ok) console.error('Command failed:', command); })
+    .catch(error => console.error('Error sending command:', error));
+  // If mouse leaves button area while pressed, send stop after short delay
+   if(command !== '/stop' && event && event.type === 'mouseleave'){
+       stopTimeout = setTimeout(() => sendCommand('/stop'), 150);
+   }
+}
+// Prevent default touch behavior like scrolling/zooming on buttons
+document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('touchstart', function(e) { e.preventDefault(); }, { passive: false });
+    button.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
+});
+</script>
+</body>
+</html>
+)rawliteral";
+  server.send(200, "text/html", html);
+}
 
-  <div class="content">
-    <h2 id="intro">Welcome & Introduction</h2>
-    <p>Welcome to the Wired Circuit Wi-Fi Car Robotics Kit! This kit is designed for kids and beginners to explore the world of robotics using Wi-Fi-enabled microcontrollers. You’ll learn about electronics, programming, and how to build and control your own car wirelessly!</p>
+void handleForward() {
+  Serial.println("Command: Forward");
+  moveForward();
+  server.send(200, "text/plain", "OK");
+}
 
-    <h2 id="box">Box Contents</h2>
-    <ul>
-      <li>NodeMCU (ESP8266)</li>
-      <li>Motor Driver (L298N / Custom)</li>
-      <li>Aluminum Chassis</li>
-      <li>2 DC Motors</li>
-      <li>Wheels (x2)</li>
-      <li>Battery holder and switch</li>
-      <li>USB cable</li>
-      <li>Jumper wires</li>
-      <li>Mounting hardware (screws, nuts, etc.)</li>
-    </ul>
+void handleBackward() {
+  Serial.println("Command: Backward");
+  moveBackward();
+  server.send(200, "text/plain", "OK");
+}
 
-    <h2 id="assembly">Assembly Instructions</h2>
-    <ol>
-      <li>Mount the motors to the chassis.</li>
-      <li>Fix the motor driver on the top plate.</li>
-      <li>Attach the wheels to the motor shafts.</li>
-      <li>Connect NodeMCU to the motor driver as per the diagram.</li>
-      <li>Insert the battery and switch into the holder.</li>
-    </ol>
+void handleLeft() {
+  Serial.println("Command: Left");
+  turnLeft();
+  server.send(200, "text/plain", "OK");
+}
 
-    <h2 id="circuit">Circuit Diagram</h2>
-    <p>Refer to the below diagram for connecting NodeMCU to Motor Driver and power system:</p>
-    <p><em>(Add image of circuit diagram here)</em></p>
+void handleRight() {
+  Serial.println("Command: Right");
+  turnRight();
+  server.send(200, "text/plain", "OK");
+}
 
-    <h2 id="programming">Programming Guide</h2>
-    <ul>
-      <li>Install Arduino IDE and NodeMCU board package.</li>
-      <li>Use USB to connect the board to your computer.</li>
-      <li>Upload the sample code provided in the resources section.</li>
-      <li>Make sure to install required libraries (ESP8266WiFi, etc.).</li>
-    </ul>
+void handleStop() {
+  Serial.println("Command: Stop");
+  stopMotors();
+  server.send(200, "text/plain", "OK");
+}
 
-    <h2 id="wifi">Wi-Fi Setup</h2>
-    <p>Power the NodeMCU and connect to the provided Wi-Fi hotspot or input your home Wi-Fi credentials in the code. Access the car control interface through the displayed IP in your browser.</p>
+// --- Motor Control Functions ---
+void stopMotors() {
+  digitalWrite(motor1Pin1, LOW);
+  digitalWrite(motor1Pin2, LOW);
+  digitalWrite(motor2Pin1, LOW);
+  digitalWrite(motor2Pin2, LOW);
+}
 
-    <h2 id="howworks">How It Works</h2>
-    <p>The NodeMCU receives commands over Wi-Fi and sends signals to the motor driver to control the motors. The motor driver directs power to the wheels depending on the inputs from NodeMCU.</p>
+void moveForward() {
+  digitalWrite(motor1Pin1, HIGH); // Motor 1 Forward
+  digitalWrite(motor1Pin2, LOW);
+  digitalWrite(motor2Pin1, HIGH); // Motor 2 Forward
+  digitalWrite(motor2Pin2, LOW);
+}
 
-    <h2 id="troubleshooting">Troubleshooting</h2>
-    <ul>
-      <li>Not connecting to Wi-Fi – Check credentials.</li>
-      <li>Motors not working – Verify power and connections.</li>
-      <li>Upload failed – Recheck port and driver settings.</li>
-    </ul>
+void moveBackward() {
+  digitalWrite(motor1Pin1, LOW);
+  digitalWrite(motor1Pin2, HIGH); // Motor 1 Backward
+  digitalWrite(motor2Pin1, LOW);
+  digitalWrite(motor2Pin2, HIGH); // Motor 2 Backward
+}
 
-    <h2 id="addons">Add-Ons & Upgrades</h2>
-    <ul>
-      <li>Add line following sensors</li>
-      <li>Bluetooth control with HC-05 module</li>
-      <li>Ultrasonic sensor for obstacle avoidance</li>
-    </ul>
+void turnLeft() {
+  // Turn left: Motor 1 Backward, Motor 2 Forward (Tank steer)
+  digitalWrite(motor1Pin1, LOW);
+  digitalWrite(motor1Pin2, HIGH);
+  digitalWrite(motor2Pin1, HIGH);
+  digitalWrite(motor2Pin2, LOW);
+}
 
-    <h2 id="showcase">Project Showcase</h2>
-    <p>Share your project photos and videos with us! Email or upload them to our community page for a chance to get featured.</p>
+void turnRight() {
+  // Turn right: Motor 1 Forward, Motor 2 Backward (Tank steer)
+  digitalWrite(motor1Pin1, HIGH);
+  digitalWrite(motor1Pin2, LOW);
+  digitalWrite(motor2Pin1, LOW);
+  digitalWrite(motor2Pin2, HIGH);
+}
+          </code></pre>
+        </div> <!-- End code-block-container -->
 
-    <h2 id="support">Support & Contact</h2>
-    <p>Need help? Reach out:</p>
-    <ul>
-      <li>📧 Email: support@wiredcircuit.com</li>
-      <li>📞 Phone: +977-XXXXXXXXXX</li>
-      <li>💬 WhatsApp Support Available</li>
-    </ul>
+        <div class="note">
+          <p>Make sure to install the required Arduino libraries:</p>
+          <ul>
+            <li>ESP8266WiFi</li>
+            <li>ESP8266WebServer</li>
+          </ul>
+           <p>Also ensure the motor control functions (<code>stopMotors()</code>, <code>moveForward()</code>, etc.) match your specific motor driver wiring and logic.</p>
+        </div> <!-- End note -->
+      </section> <!-- End programming section -->
 
-    <h2 id="resources">Certification & Resources</h2>
-    <p>Complete the tasks and submit your project to earn a certificate. Download additional resources below:</p>
-    <ul>
-      <li>📄 PDF Guides</li>
-      <li>📚 Glossary of Terms</li>
-      <li>🔗 Code files and examples</li>
-    </ul>
-  </div>
+      <!-- Wi-Fi Setup Section -->
+      <section id="wifi" class="section">
+        <h2>Wi-Fi Setup</h2>
+        <p>After uploading the code, power the NodeMCU and connect to the Wi-Fi network:</p>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Connect to AP Mode (Default)</h3>
+            <ol>
+              <li>On your phone/computer, look for a Wi-Fi network named "WiFi-Car".</li>
+              <li>Connect to it using the password "password123".</li>
+              <li>Open a web browser and navigate to the IP address <code>192.168.4.1</code>.</li>
+              <li>Use the buttons on the web page to control the car. Press and hold direction buttons, release to stop.</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h3>Use Home Network (Advanced)</h3>
+            <ol>
+              <li>Modify the Arduino code: comment out `WiFi.softAP(...)` and uncomment/add `WiFi.begin("Your_Home_SSID", "Your_Home_Password");`.</li>
+              <li>Replace `"Your_Home_SSID"` and `"Your_Home_Password"` with your actual Wi-Fi credentials.</li>
+              <li>Add code to wait for connection (`while (WiFi.status() != WL_CONNECTED)`) and print the assigned IP address (`Serial.println(WiFi.localIP());`).</li>
+              <li>Upload the modified code.</li>
+              <li>Connect your control device (phone/computer) to your home Wi-Fi network.</li>
+              <li>Find the car's IP address (check Serial Monitor via USB) and navigate to that IP in your browser.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section id="howworks" class="section">
+        <h2>How It Works</h2>
+        <p>The Wi-Fi Car operates through a series of connected components working together:</p>
+        <div class="card-grid">
+          <div class="card">
+            <h3>NodeMCU (ESP8266)</h3>
+            <p>Acts as the brain. It runs the Arduino code, creates a Wi-Fi access point (or connects to your network), hosts a simple web server, and sends digital HIGH/LOW signals to the motor driver based on commands received via Wi-Fi.</p>
+          </div>
+          <div class="card">
+            <h3>Motor Driver (L298N)</h3>
+            <p>The L298N driver takes the low-current logic signals from the NodeMCU's GPIO pins (D1-D4) and uses them to switch the higher current from the battery pack to the motors. It allows control over the direction of each motor.</p>
+          </div>
+          <div class="card">
+            <h3>Web Interface</h3>
+            <p>The HTML page (defined inside the Arduino code's `handleRoot()` function) is sent to your browser when you connect. Buttons on this page use simple JavaScript (`fetch`) to send HTTP GET requests (like `/forward`, `/stop`) back to the NodeMCU's IP address. The server running on the NodeMCU receives these requests and triggers the corresponding motor functions.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Troubleshooting Section -->
+      <section id="troubleshooting" class="section">
+        <h2>Troubleshooting</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>Possible Cause</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cannot find "WiFi-Car" network</td>
+              <td>NodeMCU not powered; Code upload failed; Incorrect code running; Antenna issue (less likely)</td>
+              <td>Check power supply to NodeMCU (USB or VIN). Re-upload the correct code. Check Arduino IDE console for upload errors. Open Serial Monitor (115200 baud) to see setup messages or errors.</td>
+            </tr>
+             <tr>
+              <td>Connected to Wi-Fi, but <code>192.168.4.1</code> doesn't load/respond</td>
+              <td>Web server failed to start; Device issue (firewall, browser cache); IP address conflict (rare)</td>
+              <td>Check Serial Monitor for "HTTP server started" message. Try clearing browser cache or using a different device/browser. Ensure your device obtained an IP from the NodeMCU (e.g., 192.168.4.x).</td>
+            </tr>
+            <tr>
+              <td>Motors don't spin at all</td>
+              <td>Wiring error (GPIO to IN pins, Motor to OUT pins, Power to Driver); Low/dead battery; Motor driver not powered (VM/VCC, GND); ENA/ENB disabled (if using L298N with jumpers removed)</td>
+              <td>Triple-check all connections based on the circuit diagram. Use fresh batteries. Ensure correct voltage (e.g., 5-9V) is supplied to the motor driver's VM terminal. Ensure GNDs are connected. If L298N jumpers for ENA/ENB are removed, ensure those pins are driven HIGH by NodeMCU (or add jumpers back).</td>
+            </tr>
+             <tr>
+               <td>Motors spin weakly or only one motor spins</td>
+               <td>Low battery power; Poor connection; Motor failure</td>
+               <td>Replace batteries. Check for loose jumper wires. Test motors individually by applying battery voltage directly (briefly!).</td>
+             </tr>
+             <tr>
+              <td>Car moves in wrong direction</td>
+              <td>Motor wires reversed on one/both motors; Logic error in motor control functions</td>
+              <td>Swap the two wires for the motor(s) going the wrong way at the motor driver output terminals OR modify the HIGH/LOW combinations in the `moveForward()`, `moveBackward()`, `turnLeft()`, `turnRight()` functions in the Arduino code.</td>
+            </tr>
+            <tr>
+              <td>Code Upload Fails (Error in IDE)</td>
+              <td>Incorrect COM port selected; Driver missing (CH340/CP210x); NodeMCU not in Bootloader Mode; USB cable is power-only (no data); Wiring conflict (GPIO0 pulled HIGH)</td>
+              <td>Select the correct Port under Tools menu. Install USB-to-Serial drivers. Press and hold FLASH/BOOT button, tap RESET button, then release FLASH/BOOT just as upload starts. Try a different USB cable. Temporarily disconnect wires from D3 (GPIO0) during upload.</td>
+            </tr>
+             <tr>
+              <td>Motor driver chip (L298N) gets very hot</td>
+              <td>Short circuit (motor wires touching, faulty motor); Overloading (motors draw too much current); Incorrect voltage</td>
+              <td>Immediately disconnect power! Check motor wiring for shorts. Ensure motor voltage rating matches supply. Consider if motors are stalled.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="warning">
+          Always disconnect the battery power source before making changes to wiring to avoid accidental shorts and damage to components.
+        </div>
+      </section>
+
+      <!-- Add-Ons Section -->
+      <section id="addons" class="section">
+        <h2>Add-Ons & Upgrades</h2>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Line Following</h3>
+            <p>Add infrared (IR) line tracking sensors (like TCRT5000 modules) connected to NodeMCU analog/digital pins. Modify the code to read sensor values and adjust motor movements to follow a line.</p>
+            <a href="#" class="btn btn-outline">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="card">
+            <h3>Obstacle Avoidance</h3>
+            <p>Mount an ultrasonic sensor (HC-SR04). Connect Trigger and Echo pins to NodeMCU GPIOs. Add code to measure distance and stop/turn the car if an obstacle is detected within a certain range.</p>
+            <a href="#" class="btn btn-outline">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="card">
+            <h3>Speed Control (PWM)</h3>
+            <p>Remove ENA/ENB jumpers on the L298N. Connect NodeMCU PWM-capable pins (e.g., D5, D6) to ENA/ENB. Use `analogWrite(pin, value)` (0-1023 for ESP8266) in the code to control motor speed. Add speed controls to the web interface.</p>
+            <a href="#" class="btn btn-outline">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Showcase Section -->
+      <section id="showcase" class="section">
+        <h2>Project Showcase</h2>
+        <p>Share your completed project with our community! Submit photos and videos of your Wi-Fi Car in action.</p>
+        <div class="card">
+          <h3>How to Submit</h3>
+          <ol>
+            <li>Take clear photos or a short video (max 1 min) of your assembled and working car.</li>
+            <li>Briefly describe any modifications, challenges, or addons you implemented.</li>
+            <li>Email materials to <a href="mailto:showcase@example.com">showcase@example.com</a> (replace with actual email) with the subject "WiFi Car Showcase".</li>
+            <li>Alternatively, post on our Community Forum (link needed).</li>
+          </ol>
+          <a href="#" class="btn btn-primary">View Gallery <i class="fas fa-images"></i></a>
+        </div>
+        <div class="note">
+          By submitting your project, you grant us permission to feature it on our website, social media, or promotional materials (we'll credit you!).
+        </div>
+      </section>
+
+      <!-- Support Section -->
+      <section id="support" class="section">
+        <h2>Support & Contact</h2>
+        <p>Need help with your Wi-Fi Car Robotics Kit? We're here to assist you!</p>
+        <div class="card-grid">
+          <div class="card">
+            <h3><i class="fas fa-envelope"></i> Email Support</h3>
+            <p>For technical assistance:</p>
+            <p><a href="mailto:support@example.com">support@example.com</a></p> <!-- Replace -->
+            <p>Response typically within 24-48 business hours.</p>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-comments"></i> Community Forum</h3>
+            <p>Ask questions and share solutions with others:</p>
+            <p><a href="#">forum.example.com</a></p> <!-- Replace -->
+            <p>Monitored by staff and experienced users.</p>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-book"></i> Documentation</h3>
+            <p>Check the latest docs and FAQs:</p>
+            <p><a href="#top">This Online Manual</a></p>
+            <p><a href="#">Product Page & FAQs</a></p> <!-- Replace -->
+          </div>
+        </div>
+        <div class="tip">
+          When asking for help, please provide details: what you've tried, specific error messages (from Serial Monitor or IDE), photos of your wiring, and the code you are using.
+        </div>
+      </section>
+
+      <!-- Resources Section -->
+      <section id="resources" class="section">
+        <h2>Certification & Resources</h2>
+        <p>Expand your knowledge and get recognized for completing the project.</p>
+        <div class="card-grid">
+          <div class="card">
+            <h3><i class="fas fa-file-pdf"></i> Documentation Links</h3>
+            <ul>
+              <li><a href="#">Full Manual Download (PDF)</a></li>
+              <li><a href="#">L298N Motor Driver Datasheet</a></li>
+              <li><a href="#">NodeMCU (ESP8266) Pinout Diagram</a></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><i class="fab fa-github"></i> Code Repository</h3>
+            <ul>
+              <li><a href="#">Base WiFi Car Code (GitHub)</a></li>
+              <li><a href="#">Example Add-on Code (GitHub)</a></li>
+              <li><a href="#">Web Interface Files (GitHub)</a></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-certificate"></i> Project Certification</h3>
+            <p>Showcase your skills! To earn a digital certificate:</p>
+            <ol>
+              <li>Successfully build and control the basic Wi-Fi Car.</li>
+              <li>Implement at least one addon (e.g., sensors, speed control).</li>
+              <li>Submit video proof and your code via the application form.</li>
+            </ol>
+            <a href="#" class="btn btn-primary">Apply for Certificate <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </section>
+
+    </div> <!-- End .content -->
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2024 Your Company Name (Example). All rights reserved.</p> <!-- Update Year/Name -->
+      <p>
+        <a href="#">Terms of Service</a> |
+        <a href="#">Privacy Policy</a> |
+        <a href="#">FAQ</a>
+      </p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+  </main>
+
+  <!-- Prism.js Libraries (Order matters for plugins) -->
+  <!-- Core -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+  <!-- Autoloader (loads languages) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <!-- Line Numbers Plugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+   <!-- Toolbar Plugin (Prerequisite for copy button) -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+   <!-- Copy to Clipboard Plugin -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+  <!-- Your custom script -->
+  <script src="./wificar.js"></script>
+
 </body>
 </html>
