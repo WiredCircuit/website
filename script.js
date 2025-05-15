@@ -1,187 +1,154 @@
+// script.js
+document.addEventListener('DOMContentLoaded', () => {
 
-// Scroll Animation for How It Works Steps
-document.addEventListener('DOMContentLoaded', function () {
-    const steps = document.querySelectorAll('.step');
+    // --- Sticky Header on Scroll ---
+    const header = document.querySelector('header');
+    const navHeight = header.offsetHeight; // Get nav height for scroll calculations
 
-    function checkScroll() {
-        steps.forEach(step => {
-            const position = step.getBoundingClientRect();
-
-            // If element is in viewport
-            if (position.top < window.innerHeight - 100) {
-                step.classList.add('visible');
-            }
-        });
-    }
-
-    // Check positions initially
-    checkScroll();
-
-    // Check positions on scroll
-    window.addEventListener('scroll', checkScroll);
-
-    // Mini Game Logic
-    const car = document.getElementById('car');
-    const gameRoad = document.getElementById('gameRoad');
-    const leftBtn = document.getElementById('leftBtn');
-    const rightBtn = document.getElementById('rightBtn');
-    const startBtn = document.getElementById('startBtn');
-    const scoreDisplay = document.getElementById('score');
-
-    let carPosition = 50; // percentage from left
-    let gameRunning = false;
-    let obstacles = [];
-    let animationId;
-    let score = 0;
-
-    // Car movement
-    function moveCar(direction) {
-        if (direction === 'left' && carPosition > 10) {
-            carPosition -= 5;
-        } else if (direction === 'right' && carPosition < 90) {
-            carPosition += 5;
-        }
-        car.style.left = carPosition + '%';
-    }
-
-    // Event listeners for buttons
-    leftBtn.addEventListener('click', () => moveCar('left'));
-    rightBtn.addEventListener('click', () => moveCar('right'));
-
-    // Event listeners for keyboard
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            moveCar('left');
-        } else if (e.key === 'ArrowRight') {
-            moveCar('right');
-        }
-    });
-
-    // Create obstacles
-    function createObstacle() {
-        const obstacle = document.createElement('div');
-        obstacle.classList.add('obstacle');
-        const randomPosition = Math.floor(Math.random() * 80) + 10; // 10-90%
-        obstacle.style.left = randomPosition + '%';
-        gameRoad.appendChild(obstacle);
-        obstacles.push({
-            element: obstacle,
-            position: randomPosition
-        });
-    }
-
-    // Move obstacles
-    function moveObstacles() {
-        for (let i = 0; i < obstacles.length; i++) {
-            const obstacle = obstacles[i];
-            const obstacleTop = parseInt(window.getComputedStyle(obstacle.element).getPropertyValue('top'));
-
-            // Move obstacle down
-            obstacle.element.style.top = obstacleTop + 3 + 'px';
-
-            // Check if obstacle is out of screen
-            if (obstacleTop > gameRoad.offsetHeight) {
-                obstacle.element.remove();
-                obstacles.splice(i, 1);
-                i--;
-                score++;
-                scoreDisplay.textContent = 'Score: ' + score;
-            }
-
-            // Check collision
-            if (isCollision(car, obstacle.element)) {
-                endGame();
-            }
-        }
-    }
-
-    // Check collision
-    function isCollision(car, obstacle) {
-        const carRect = car.getBoundingClientRect();
-        const obstacleRect = obstacle.getBoundingClientRect();
-
-        return !(
-            carRect.bottom < obstacleRect.top ||
-            carRect.top > obstacleRect.bottom ||
-            carRect.right < obstacleRect.left ||
-            carRect.left > obstacleRect.right
-        );
-    }
-
-    // Game loop
-    function gameLoop() {
-        moveObstacles();
-
-        // Create new obstacle randomly
-        if (gameRunning && Math.random() < 0.02) {
-            createObstacle();
-        }
-
-        if (gameRunning) {
-            animationId = requestAnimationFrame(gameLoop);
-        }
-    }
-
-    // Start game
-    startBtn.addEventListener('click', () => {
-        if (gameRunning) {
-            endGame();
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) { // A small threshold
+            header.classList.add('scrolled');
         } else {
-            startGame();
+            header.classList.remove('scrolled');
         }
     });
 
-    function startGame() {
-        gameRunning = true;
-        score = 0;
-        scoreDisplay.textContent = 'Score: ' + score;
-        carPosition = 50;
-        car.style.left = carPosition + '%';
+    // --- Smooth Scroll for Nav Links with Offset for Fixed Header ---
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"], .hero a[href^="#"], .cta-section a[href^="#"], .info-section a[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            // Only prevent default for internal links (starting with #) on the same page
+            if (href.startsWith('#') && document.getElementById(href.substring(1))) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
 
-        // Clear existing obstacles
-        obstacles.forEach(obstacle => obstacle.element.remove());
-        obstacles = [];
+                if (targetElement) {
+                    // Use the dynamically fetched navHeight
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - navHeight;
 
-        startBtn.textContent = 'Stop Game';
-        animationId = requestAnimationFrame(gameLoop);
-    }
-
-    function endGame() {
-        gameRunning = false;
-        cancelAnimationFrame(animationId);
-        startBtn.textContent = 'Start Game';
-        alert('Game Over! Your score: ' + score);
-    }
-
-    // Create lane markers
-    function createLaneMarkers() {
-        for (let i = 0; i < 6; i++) {
-            const marker = document.createElement('div');
-            marker.classList.add('lane-marker');
-            marker.style.top = (i * 60) - 60 + 'px';
-            gameRoad.appendChild(marker);
-
-            // Animate lane markers
-            animateLaneMarker(marker);
-        }
-    }
-
-    function animateLaneMarker(marker) {
-        let position = parseInt(marker.style.top);
-
-        function move() {
-            position += 2;
-            if (position > gameRoad.offsetHeight) {
-                position = -50;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             }
-            marker.style.top = position + 'px';
-            if (gameRunning) {
-                requestAnimationFrame(move);
-            }
-        }
+            // For links to other pages (like kits.html#some-id), let the browser handle default behavior
+            // For links like kits.html, also default behavior
+        });
+    });
 
-        requestAnimationFrame(move);
+
+    // --- Scroll Reveal Animations ---
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // If children items need staggered animation, their parent gets 'is-visible'
+                // and CSS :nth-child with animation-delay handles the stagger.
+                 if (entry.target.classList.contains('products-grid') || entry.target.classList.contains('steps-container')) {
+                    // This is mostly for the parent grid/container itself.
+                    // Individual cards/steps are handled by the more general rule below
+                    // or specific CSS if the parent has .is-visible.
+                }
+                // observer.unobserve(entry.target); // Optional: unobserve after first reveal
+            } else {
+                // Optional: Hide again if scrolled out of view.
+                // Be careful with this, can be jarring.
+                // entry.target.classList.remove('is-visible');
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.1, // 10% of item visible for section reveals
+        // rootMargin: "-50px" 
+    });
+
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // Specific observer for product cards and steps for finer control if needed,
+    // though the CSS stagger with parent.is-visible should mostly cover it.
+    const revealChildItems = document.querySelectorAll('.product-card, .step, .info-section .info-text, .info-section .info-image');
+     const childRevealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible'); // This class is what triggers their individual animation
+                // observer.unobserve(entry.target);
+            } else {
+                // entry.target.classList.remove('is-visible');
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.15, // Trigger a bit later for individual items
+    });
+
+    revealChildItems.forEach(el => {
+        childRevealObserver.observe(el);
+    });
+
+
+    // --- Hero Image Parallax/Mouse Move Effect (Subtle) ---
+    // This was removed in the thought process as it could interfere with other transforms,
+    // but if you want a simple version for the container:
+    const heroImagesContainer = document.querySelector('.hero-images');
+    if (heroImagesContainer && window.matchMedia("(min-width: 993px)").matches) { // Only on larger screens
+        heroImagesContainer.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const rect = heroImagesContainer.getBoundingClientRect();
+            const x = (clientX - rect.left - rect.width / 2) / 20; // Movement factor
+            const y = (clientY - rect.top - rect.height / 2) / 20;
+
+            // Apply to individual images with slight variation
+            const heroIndividualImages = heroImagesContainer.querySelectorAll('.hero-image');
+            heroIndividualImages.forEach((img, index) => {
+                const moveX = x * (1 - index * 0.15); // Vary effect per image
+                const moveY = y * (1 - index * 0.15);
+                // Preserve existing animated transforms
+                const existingTransform = img.style.transform.replace(/translateZ\(0px\)/g, '').trim(); // Clean up if needed
+                img.style.transform = `${existingTransform} translateX(${moveX}px) translateY(${moveY}px) translateZ(0px)`; // Added translateZ for performance
+            });
+        });
+
+        heroImagesContainer.addEventListener('mouseleave', () => {
+            const heroIndividualImages = heroImagesContainer.querySelectorAll('.hero-image');
+            heroIndividualImages.forEach((img) => {
+                // Reset only the mouse-move part of transform, keep animation part
+                img.style.transform = img.style.transform.replace(/translateX\([^)]+\) translateY\([^)]+\)/g, '').trim();
+            });
+        });
     }
 
-    createLaneMarkers();
+    // --- Active Nav Link Highlighting based on current page ---
+    // (for kits.html, the 'Kits' link should be active)
+    const currentPage = window.location.pathname.split("/").pop(); // e.g., "index.html" or "kits.html"
+    const navHeaderLinks = document.querySelectorAll('header .nav-links a');
+
+    navHeaderLinks.forEach(link => {
+        const linkPage = link.getAttribute('href').split("/").pop().split("#")[0]; // Get page name from href
+        if (linkPage === currentPage || (currentPage === "" && linkPage === "index.html")) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+    // If you implement a burger menu, add JS for toggling '.nav-links.active' here.
+    // Example (requires a burger menu button with id="burger-menu"):
+    /*
+    const burgerMenu = document.getElementById('burger-menu'); // You'd need to add this button to HTML
+    const navMenu = document.querySelector('header .nav-links');
+    if (burgerMenu && navMenu) {
+        burgerMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
+    */
+
 });
