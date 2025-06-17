@@ -41,6 +41,13 @@ body {
     background-color: var(--background-color);
     line-height: 1.6;
     overflow-x: hidden; /* Prevent horizontal scroll from animations */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* vh = viewport height */
+}
+
+main {
+    flex-grow: 1;
 }
 
 .container {
