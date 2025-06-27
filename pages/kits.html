@@ -3,22 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Our Kits | Wired Circuit | Robotics & Electronics Kits Nepal</title>
+    <title>Our Kits & Components | Wired Circuit | Robotics & Electronics Nepal</title>
     <meta
       name="description"
-      content="Browse Wired Circuit's full collection of educational robotics and electronics kits. Perfect for STEM learning, hobbyists, kids, and students in Nepal."
+      content="Browse Wired Circuit's full collection of educational robotics, electronics kits, and individual components. Perfect for STEM learning, hobbyists, kids, and students in Nepal."
     />
     <meta
       name="keywords"
-      content="Wired Circuit kits, robotics kits Nepal, electronics kits Nepal, STEM kits, Arduino projects Nepal, educational kits, buy robotics kits online Nepal"
+      content="Wired Circuit kits, robotics kits Nepal, electronics components Nepal, STEM kits, Arduino, ESP32, sensors, buy robotics parts online Nepal"
     />
     <meta name="author" content="Wired Circuit Team" />
 
     <!-- Open Graph for social sharing -->
-    <meta property="og:title" content="All Kits | Wired Circuit Nepal" />
+    <meta property="og:title" content="All Kits & Components | Wired Circuit Nepal" />
     <meta
       property="og:description"
-      content="Explore our wide range of robotics and electronics learning kits. Order online in Nepal."
+      content="Explore our wide range of robotics/electronics learning kits and individual components. Order online in Nepal."
     />
     <meta
       property="og:image"
@@ -35,11 +35,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Wired Circuit Kits | Shop Robotics & Electronics in Nepal"
+      content="Wired Circuit Kits & Components | Shop Robotics & Electronics in Nepal"
     />
     <meta
       name="twitter:description"
-      content="Find the perfect STEM kit from Wired Circuit's collection. Fun and educational for all ages in Nepal."
+      content="Find the perfect STEM kit or electronic component from Wired Circuit's collection. Fun and educational for all ages in Nepal."
     />
     <meta
       name="twitter:image"
@@ -50,7 +50,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link href="../styles/style.css" rel="stylesheet" />
+    <link href="../styles/kits.css" rel="stylesheet" />
     <link rel="icon" href="../images/wiredcircuit.png" type="image/png" />
   </head>
   <body>
@@ -79,9 +79,10 @@
       </div>
     </header>
 
-    <!-- All Kits Section -->
+    <!-- Main Content -->
     <main class="all-kits-page">
-      <section class="kit-showcase reveal-on-scroll" id="all-our-kits">
+      <!-- All Kits Section -->
+      <section class="kit-showcase" id="all-our-kits">
         <div class="container">
           <h1 class="section-title main-page-title">Our Educational Kits</h1>
           <p class="section-subtitle">
@@ -109,7 +110,6 @@
                 </button>
               </div>
             </div>
-
             <div class="product-card" id="wifi-car-kit">
               <div class="product-image">
                 <img src="../images/kits/wifiCarKit.png" alt="Wifi Car Kit" />
@@ -127,7 +127,6 @@
                 </button>
               </div>
             </div>
-
             <div class="product-card" id="bluetooth-car-kit">
               <div class="product-image">
                 <img
@@ -148,50 +147,292 @@
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div class="product-card" id="echoruler-kit">
-              <div class="product-image">
-                <img
-                  src="../images/kits/echoLocatorKit.png"
-                  alt="EchoRuler Kit"
-                />
-                <!-- Placeholder image -->
-              </div>
+      <!-- Individual Components Section -->
+      <section class="components-showcase" id="all-components">
+        <div class="container">
+          <h2 class="section-title">Or Build Your Own: Individual Components</h2>
+          <p class="section-subtitle">
+            Find all the essential parts you need for your next electronics
+            project, right here.
+          </p>
+          <div class="products-grid components-grid">
+            
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="Arduino Uno"></div>
               <div class="product-details">
-                <h3 class="product-title">EchoRuler - Ultrasonic Sensor Kit</h3>
-                <p class="product-description">
-                  Learn about ultrasonic distance measurement with this hands-on
-                  kit. Build your own digital ruler and explore sensor
-                  technology. Great for understanding real-world applications.
-                </p>
-                <div class="product-price">रू 1,800</div>
-                <button class="cta-button product-action-button">
-                  Add to Cart
-                </button>
+                <h3 class="product-title">Arduino Uno</h3>
+                <ul class="component-description">
+                    <li>Most popular beginner board</li>
+                    <li>USB connectivity for easy programming</li>
+                    <li>Large shield ecosystem</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 800</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
               </div>
             </div>
-            <!-- Add more product cards here as needed -->
-            <div class="product-card" id="iot-home-automation-kit">
-              <div class="product-image">
-                <img
-                  src="../images/kits/kit2.png"
-                  alt="IoT Home Automation Kit"
-                />
-                <!-- Placeholder image -->
-              </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="Arduino Nano"></div>
               <div class="product-details">
-                <h3 class="product-title">IoT Home Automation Kit</h3>
-                <p class="product-description">
-                  Step into the world of Smart Homes! Control lights and
-                  appliances remotely using your smartphone or voice commands.
-                  An excellent introduction to the Internet of Things.
-                </p>
-                <div class="product-price">रू 4,500</div>
-                <button class="cta-button product-action-button">
-                  Add to Cart
-                </button>
+                <h3 class="product-title">Arduino Nano</h3>
+                <ul class="component-description">
+                    <li>Small, breadboard-friendly</li>
+                    <li>Uno functionality in a compact size</li>
+                    <li>Ideal for space-constrained projects</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 450</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
               </div>
             </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="NodeMCU (ESP8266)"></div>
+              <div class="product-details">
+                <h3 class="product-title">NodeMCU (ESP8266)</h3>
+                 <ul class="component-description">
+                    <li>Built-in Wi-Fi module</li>
+                    <li>Perfect for Internet of Things (IoT)</li>
+                    <li>Low cost and easy to program</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 500</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="ESP32 Dev Board"></div>
+              <div class="product-details">
+                <h3 class="product-title">ESP32 Dev Board</h3>
+                <ul class="component-description">
+                    <li>Powerful dual-core processor</li>
+                    <li>Onboard Wi-Fi and Bluetooth</li>
+                    <li>For advanced IoT applications</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 800</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="HC 05 Bluetooth Module"></div>
+              <div class="product-details">
+                <h3 class="product-title">HC-05 Bluetooth</h3>
+                <ul class="component-description">
+                    <li>Adds Bluetooth to any project</li>
+                    <li>Supports Master/Slave modes</li>
+                    <li>Uses serial communication (UART)</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 500</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="L298N Motor Driver"></div>
+              <div class="product-details">
+                <h3 class="product-title">L298N Motor Driver</h3>
+                <ul class="component-description">
+                    <li>Controls two DC motors</li>
+                    <li>Direction and speed control (PWM)</li>
+                    <li>Essential for building robots</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 300</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="MPU-6050"></div>
+              <div class="product-details">
+                <h3 class="product-title">MPU-6050 Gyro/Accel</h3>
+                <ul class="component-description">
+                    <li>6-Axis motion tracking</li>
+                    <li>Gyroscope & Accelerometer</li>
+                    <li>For drones & balancing robots</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 400</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="LCD 16x2 with I2C"></div>
+              <div class="product-details">
+                <h3 class="product-title">LCD 16x2 with I2C</h3>
+                <ul class="component-description">
+                    <li>2-line, 16-character display</li>
+                    <li>I2C interface saves GPIO pins</li>
+                    <li>Show sensor data or status</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 400</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="Servo Motor (SG90)"></div>
+              <div class="product-details">
+                <h3 class="product-title">Servo Motor (SG90)</h3>
+                <ul class="component-description">
+                    <li>Precise 180-degree rotation</li>
+                    <li>Lightweight and compact</li>
+                    <li>For robotic arms & steering</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 250</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="Ultrasonic Sensor (HC-SR04)"></div>
+              <div class="product-details">
+                <h3 class="product-title">Ultrasonic Sensor</h3>
+                <ul class="component-description">
+                    <li>Measures distance with sound</li>
+                    <li>Non-contact measurement</li>
+                    <li>For obstacle avoidance robots</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 170</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="DHT11 Temperature & Humidity Sensor"></div>
+              <div class="product-details">
+                <h3 class="product-title">DHT11 Sensor</h3>
+                <ul class="component-description">
+                    <li>Measures temperature & humidity</li>
+                    <li>Digital signal output</li>
+                    <li>Great for weather stations</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 350</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="Dupont Wires (Male-Male)"></div>
+              <div class="product-details">
+                <h3 class="product-title">Dupont Wires (M-M)</h3>
+                <ul class="component-description">
+                    <li>40 Pcs, 20cm length</li>
+                    <li>Male-to-Male connectors</li>
+                    <li>For breadboard prototyping</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 260</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="Dupont Wires (Male-Female)"></div>
+              <div class="product-details">
+                <h3 class="product-title">Dupont Wires (M-F)</h3>
+                <ul class="component-description">
+                    <li>40 Pcs, 20cm length</li>
+                    <li>Male-to-Female connectors</li>
+                    <li>Connect modules to boards</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 260</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="Dupont Wires (Female-Female)"></div>
+              <div class="product-details">
+                <h3 class="product-title">Dupont Wires (F-F)</h3>
+                <ul class="component-description">
+                    <li>40 Pcs, 20cm length</li>
+                    <li>Female-to-Female connectors</li>
+                    <li>For inter-module connections</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 260</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="Breadboard (830 Point)"></div>
+              <div class="product-details">
+                <h3 class="product-title">Breadboard (830 Point)</h3>
+                <ul class="component-description">
+                    <li>Solderless prototyping board</li>
+                    <li>830 tie-points</li>
+                    <li>Reusable for new circuits</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 250</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="60W Soldering Iron"></div>
+              <div class="product-details">
+                <h3 class="product-title">60W Soldering Iron</h3>
+                <ul class="component-description">
+                    <li>Adjustable temperature control</li>
+                    <li>For permanent circuit connections</li>
+                    <li>Essential for serious hobbyists</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 1,900</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card component-card">
+              <div class="product-image"><img src="../images/wiredcircuit.png" alt="OLED Display 0.96 inch"></div>
+              <div class="product-details">
+                <h3 class="product-title">OLED Display 0.96"</h3>
+                <ul class="component-description">
+                    <li>Crisp, high-contrast display</li>
+                    <li>I2C interface saves pins</li>
+                    <li>Low power consumption</li>
+                </ul>
+                <div class="product-buy-zone">
+                  <div class="product-price">रू 650</div>
+                  <button class="cta-button product-action-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </section>
@@ -199,18 +440,15 @@
 
     <!-- Footer -->
     <footer id="contact-kits-page">
-      <!-- Changed ID to avoid conflict if on same page scroll -->
       <div class="container">
         <ul class="footer-links">
           <li><a href="index.html#about-us-placeholder">About Us</a></li>
-          <!-- Point to a section in index.html or a new page -->
           <li><a href="index.html#faqs-placeholder">FAQs</a></li>
           <li><a href="#">Shipping & Returns</a></li>
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="index.html#contact">Contact Us</a></li>
         </ul>
         <p>Email: wiredcircuitry@gmail.com | Phone: +977- 9841780396</p>
-        <!-- Added contact info -->
         <p class="copyright">
           ©
           <script>
